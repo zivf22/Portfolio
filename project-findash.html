@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parkhunt — Ziv Fishman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@100;200;300;400&display=swap" rel="stylesheet" />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--black); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; cursor: none; }
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+    .cursor.hover { width: 48px; height: 48px; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
+    .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+    .header-left a:hover { color: var(--black); }
+    .header-right { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
+    .split { display: grid; grid-template-columns: 1fr 2fr; margin-top: var(--header); min-height: calc(100vh - var(--header)); }
+    .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; border-right: 1px solid var(--line); padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
+    .split-left::-webkit-scrollbar { display: none; }
+    .project-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 20px; }
+    .project-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(52px, 7vw, 100px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 32px; }
+    .project-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); margin-bottom: 40px; }
+    .info-block { margin-bottom: 28px; }
+    .info-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
+    .info-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
+    .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--line); padding: 4px 10px; }
+    .divider { height: 1px; background: var(--line); margin: 28px 0; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .left-bottom { margin-top: auto; padding-top: 40px; }
+    .panel-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .panel-link:hover { color: var(--black); border-color: var(--black); }
+    .split-right { padding: 0; }
+    .photo-item { overflow: hidden; display: block; }
+    .photo-item img { width: 100%; display: block; filter: grayscale(8%); transition: filter 0.5s, transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .photo-item:hover img { filter: grayscale(0%); transform: scale(1.02); }
+    .photo-item.wide img  { aspect-ratio: 4/3; object-fit: cover; }
+    .photo-item.tall img  { aspect-ratio: 2/3; object-fit: cover; }
+    .photo-item.square img { aspect-ratio: 1/1; object-fit: cover; }
+    .photo-item.banner img { aspect-ratio: 21/9; object-fit: cover; }
+    .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
+    .photo-row.two { grid-template-columns: 1fr 1fr; }
+    .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .photo-row.one { grid-template-columns: 1fr; }
+    .next-project { display: flex; align-items: center; justify-content: space-between; padding: 40px; border-top: 1px solid var(--line); text-decoration: none; color: var(--black); transition: background 0.2s; }
+    .next-project:hover { background: #f5f5f5; }
+    .next-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 8px; }
+    .next-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 56px); text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; }
+    footer { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-top: 1px solid var(--line); }
+    footer span { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); }
+    @media (max-width: 900px) {
+      .split { grid-template-columns: 1fr; }
+      .split-left { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 40px 24px; }
+      header, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <header>
+    <div class="header-left"><a href="index.html">← Back</a></div>
+    <div class="header-right">002 / 004</div>
+  </header>
+  <div class="split">
+    <div class="split-left">
+      <div>
+        <p class="project-num">Parkhunt · 2024</p>
+        <h1 class="project-name">Park<br />Hunt</h1>
+        <p class="project-tagline">A B2B analytics platform redesign — turning dense financial data into clear, scannable insights for non-technical decision makers.</p>
+        <div class="divider"></div>
+        <div class="info-block">
+          <p class="info-label">Overview</p>
+          <p class="info-text">Parkhunt's product had grown organically over 4 years with no unified design language, resulting in a dashboard that paralysed users with choice.<br /><br />I started with 12 contextual interviews with finance managers and mapped their actual daily workflows — identifying the 6 data points they checked every morning. The rest was noise.</p>
+        </div>
+        <div class="divider"></div>
+        <div class="meta-grid">
+          <div class="info-block">
+            <p class="info-label">Role</p>
+            <p class="info-text">UX/UI Designer</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Type</p>
+            <p class="info-text">SaaS · B2B</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Challenge</p>
+            <p class="info-text">40+ dashboard widgets with no hierarchy, causing decision paralysis.</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Outcome</p>
+            <p class="info-text">Time-to-insight reduced by 60%. NPS score up 22 points post-launch.</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-block">
+          <p class="info-label">Tools Used</p>
+          <div class="tags">
+            <span class="tag">Figma</span>
+            <span class="tag">FigJam</span>
+            <span class="tag">Hotjar</span>
+            <span class="tag">Notion</span>
+            <span class="tag">Lottie</span>
+            <span class="tag">Storybook</span>
+          </div>
+        </div>
+      </div>
+      <div class="left-bottom">
+        <a href="#" class="panel-link">Visit Live ↗</a>
+      </div>
+    </div>
+    <div class="split-right">
+      <div class="photo-row one">
+        <div class="photo-item wide"><img src="https://picsum.photos/seed/stack2/1400/788" alt="" /></div>
+      </div>
+      <div class="photo-row two">
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd2/600/600" alt="" /></div>
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd3/600/600" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item banner"><img src="https://picsum.photos/seed/fd4/1200/500" alt="" /></div>
+      </div>
+      <div class="photo-row three">
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd5/500/500" alt="" /></div>
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd6/500/500" alt="" /></div>
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd7/500/500" alt="" /></div>
+      </div>
+      <div class="photo-row two">
+        <div class="photo-item tall"><img src="https://picsum.photos/seed/fd8/600/900" alt="" /></div>
+        <div class="photo-item tall"><img src="https://picsum.photos/seed/fd9/600/900" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item wide"><img src="https://picsum.photos/seed/fd10/900/680" alt="" /></div>
+      </div>
+      <div class="photo-row two">
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd11/600/600" alt="" /></div>
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd12/600/600" alt="" /></div>
+      </div>
+      <div class="photo-row three">
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd13/500/500" alt="" /></div>
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd14/500/500" alt="" /></div>
+        <div class="photo-item square"><img src="https://picsum.photos/seed/fd15/500/500" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item banner"><img src="https://picsum.photos/seed/fd16/1200/500" alt="" /></div>
+      </div>
+      <a href="project-mangomarket.html" class="next-project">
+        <div><p class="next-label">Next Project</p><p class="next-title">Yes Is More</p></div>
+        <span style="font-size:28px">→</span>
+      </a>
+      <footer>
+        <span>© 2026 Ziv Fishman</span>
+        <span>Parkhunt · 002</span>
+        <span>UX / UI Designer</span>
+      </footer>
+    </div>
+  </div>
+  <script>
+    // Entry transition from main page
+    (function() {
+      const raw = sessionStorage.getItem("photoTransition");
+      if (!raw) return;
+      sessionStorage.removeItem("photoTransition");
+      let from = null;
+      try { from = JSON.parse(raw); } catch(e) {}
+      if (!from) return;
+
+      const leftPanel = document.querySelector(".split-left");
+      const allRows   = document.querySelectorAll(".photo-row");
+
+      leftPanel.style.cssText += ";transform:translateX(-100%);transition:none;";
+      allRows.forEach((r, i) => {
+        if (i > 0) r.style.cssText += ";opacity:0;transform:translateX(40px);transition:none;";
+      });
+
+      const overlay = document.createElement("div");
+      overlay.style.cssText = `position:fixed;left:${from.left}px;top:${from.top}px;width:${from.width}px;height:${from.height}px;overflow:hidden;z-index:9998;`;
+      const img = document.createElement("img");
+      img.src = from.imgSrc || allRows[0].querySelector("img").src;
+      img.style.cssText = "width:100%;height:100%;object-fit:cover;display:block;";
+      overlay.appendChild(img);
+      document.body.appendChild(overlay);
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const rect = allRows[0].getBoundingClientRect();
+        overlay.style.transition = "left 0.65s cubic-bezier(0.16,1,0.3,1),top 0.65s cubic-bezier(0.16,1,0.3,1),width 0.65s cubic-bezier(0.16,1,0.3,1),height 0.65s cubic-bezier(0.16,1,0.3,1)";
+        overlay.style.left   = rect.left + "px";
+        overlay.style.top    = rect.top  + "px";
+        overlay.style.width  = rect.width + "px";
+        overlay.style.height = rect.height + "px";
+
+        leftPanel.style.transition = "transform 0.7s cubic-bezier(0.16,1,0.3,1)";
+        leftPanel.style.transform  = "translateX(0)";
+
+        setTimeout(() => {
+          overlay.style.transition += ",opacity 0.3s ease";
+          overlay.style.opacity = "0";
+          setTimeout(() => overlay.remove(), 350);
+        }, 400);
+
+        allRows.forEach((r, i) => {
+          if (i > 0) {
+            setTimeout(() => {
+              r.style.transition = "opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1)";
+              r.style.opacity    = "1";
+              r.style.transform  = "translateX(0)";
+            }, 120 + i * 60);
+          }
+        });
+      }));
+    })();
+
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+    document.querySelectorAll(".photo-row").forEach((row, i) => {
+      row.style.zIndex = i + 1;
+    });
+    document.querySelectorAll("a").forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+  </script>
+</body>
+</html>
