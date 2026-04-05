@@ -6,7 +6,7 @@
   <title>Ziv Fishman — UX/UI Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@100;200;300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@100;200;300;400;500;600&display=swap" rel="stylesheet" />
   <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,22 +32,16 @@
     /* ── CUSTOM CURSOR ── */
     .cursor {
       position: fixed;
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       background: var(--black);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
-      transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+      transition: width 0.3s, height 0.3s;
       mix-blend-mode: difference;
     }
-
-    .cursor.hover {
-      width: 48px;
-      height: 48px;
-      background: var(--black);
-    }
+    .cursor.hover { width: 48px; height: 48px; }
 
     /* ── HEADER ── */
     header {
@@ -58,26 +52,29 @@
       align-items: flex-start;
       justify-content: space-between;
       padding: 28px 40px;
-      mix-blend-mode: normal;
     }
 
     .header-left h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 400;
+      font-size: 0;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .header-left .name-font {
+      font-family: 'Annie Use Your Telescope', cursive;
       font-size: 18px;
+      font-weight: 400;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      line-height: 1;
-    }
-
-    .header-left span {
-      display: block;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
       color: var(--black);
-      margin-top: 4px;
+    }
+    .header-left .portfolio-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--black);
+      margin-left: 4px;
     }
 
     .header-right {
@@ -86,7 +83,6 @@
       align-items: flex-end;
       gap: 6px;
     }
-
     .header-right a,
     .header-right button {
       font-size: 11px;
@@ -98,14 +94,9 @@
       background: none;
       border: none;
       cursor: none;
-      transition: color 0.2s;
       padding: 0;
       line-height: 1.4;
     }
-
-    .header-right a:hover,
-    .header-right button:hover { color: var(--black); }
-
     #clock {
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 400;
@@ -114,75 +105,65 @@
       color: var(--black);
     }
 
-    /* ── MAIN WRAPPER ── */
-    main {
-      padding-top: 76px;
+    /* ── MAIN ── */
+    main { padding-top: 76px; }
+
+    /* ── HERO SECTION ── */
+    .hero-section {
+      position: relative;
     }
 
-    /* ── HERO ── */
-    .hero {
-      padding: 60px 40px 0;
-    }
-
-    .hero-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding: 0 0 40px;
-    }
-
-    .hero-role {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--black);
-    }
-
-    .hero-desc {
-      max-width: 280px;
-      font-size: 11px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--black);
-      text-align: right;
-    }
-
-    /* ── HERO PHOTO COLUMN ── */
+    /* Photos: centered column, photos sit in the page center */
     .hero-photos {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      padding: 0 40px 40px;
-      margin-top: 80px;
+      padding-top: 80px;
+      padding-bottom: 60px;
     }
 
     .hero-photo-row {
-      width: 340px;
       overflow: hidden;
-      border-radius: 0;
+      display: block;
+      position: relative;
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     .hero-photo-row:hover,
     .hero-photo-row.expanded {
-      transform: scaleX(1.08);
+      transform: scaleX(1.06);
     }
-
     .hero-photo-row img {
       width: 100%;
-      aspect-ratio: 17/5;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      transform-origin: center center;
     }
-
     .hero-photo-row:hover img,
     .hero-photo-row.expanded img { transform: scale(1.04); }
 
-    /* ── PROJECTS LIST ── */
+    /* Varying photo widths & aspect ratios (scaled from 1512px Figma design) */
+    .hero-photo-row:nth-child(1) { width: 27.25vw; }
+    .hero-photo-row:nth-child(1) img { aspect-ratio: 412/250; }
+
+    .hero-photo-row:nth-child(2) { width: 30.56vw; }
+    .hero-photo-row:nth-child(2) img { aspect-ratio: 462/268; }
+
+    .hero-photo-row:nth-child(3) { width: 19.18vw; }
+    .hero-photo-row:nth-child(3) img { aspect-ratio: 290/372; }
+
+    .hero-photo-row:nth-child(4) { width: 27.25vw; }
+    .hero-photo-row:nth-child(4) img { aspect-ratio: 412/255; }
+
+    /* Projects overlay: absolutely on top of photos, transparent center */
+    .projects-overlay {
+      position: absolute;
+      top: 113px; /* 189px figma - 76px main padding-top */
+      left: 0; right: 0;
+      z-index: 2;
+    }
+
+    /* ── PROJECTS LABEL ── */
     .projects-label {
       padding: 24px 40px;
       display: flex;
@@ -190,7 +171,6 @@
       align-items: center;
       border-bottom: 1px solid var(--line);
     }
-
     .projects-label span {
       font-size: 11px;
       font-weight: 500;
@@ -200,9 +180,7 @@
     }
 
     /* ── PROJECT ROW ── */
-    .project {
-      border-bottom: 1px solid var(--line);
-    }
+    .project { border-bottom: 1px solid var(--line); }
 
     .project-header {
       display: flex;
@@ -210,12 +188,9 @@
       padding: 0 40px;
       gap: 32px;
       cursor: none;
-      transition: background 0.2s;
       text-decoration: none;
       color: inherit;
     }
-
-    .project-header:hover { background: #f5f5f5; }
 
     .project-num {
       font-size: 11px;
@@ -226,7 +201,6 @@
       padding: 28px 0;
       flex-shrink: 0;
     }
-
     .project-title {
       flex: 1;
       font-family: 'IBM Plex Mono', monospace;
@@ -238,10 +212,7 @@
       padding: 20px 0;
       transition: letter-spacing 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    .project-header:hover .project-title {
-      letter-spacing: 0.18em;
-    }
+    .project-header:hover .project-title { letter-spacing: 0.18em; }
 
     .project-type {
       font-size: 11px;
@@ -253,7 +224,6 @@
       min-width: 100px;
       flex-shrink: 0;
     }
-
     .project-toggle {
       font-size: 11px;
       font-weight: 500;
@@ -262,187 +232,6 @@
       min-width: 60px;
       text-align: right;
       flex-shrink: 0;
-      transition: color 0.2s;
-    }
-
-    .project.open .project-toggle { color: var(--black); }
-
-    /* ── PROJECT PANEL ── */
-    .project-panel {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .project.open .project-panel {
-      grid-template-rows: 1fr;
-    }
-
-    .project-panel-inner {
-      overflow: hidden;
-    }
-
-    .project-panel-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
-      padding: 48px 40px 56px;
-      border-top: 1px solid var(--line);
-    }
-
-    .panel-col {
-      padding-right: 60px;
-    }
-
-    .panel-col:last-child { padding-right: 0; }
-
-    .panel-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--black);
-      margin-bottom: 16px;
-    }
-
-    .panel-text {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--black);
-    }
-
-    .panel-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .panel-tag {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid var(--line);
-      padding: 5px 12px;
-      border-radius: 2px;
-    }
-
-    .panel-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--black);
-      text-decoration: none;
-      border-bottom: 1px solid var(--black);
-      padding-bottom: 2px;
-      margin-top: 24px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .panel-link:hover { color: var(--black); border-color: var(--black); }
-
-    /* ── ABOUT SECTION ── */
-    .about-section {
-      border-top: 1px solid var(--line);
-    }
-
-    .about-left {
-      padding: 80px 40px;
-    }
-
-    .about-right {
-      padding: 80px 40px;
-    }
-
-    .section-tag {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--black);
-      margin-bottom: 48px;
-    }
-
-    .about-heading {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 400;
-      font-size: clamp(40px, 5vw, 72px);
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    .about-body {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--black);
-      max-width: 400px;
-    }
-
-    .about-body strong { color: var(--black); font-weight: 500; }
-
-    .skills-list {
-      list-style: none;
-      margin-top: 48px;
-    }
-
-    .skills-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .skills-list li span {
-      font-weight: 300;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--black);
-      font-size: 12px;
-    }
-
-    /* ── STATS ROW ── */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--line);
-    }
-
-    .stat-item {
-      padding: 48px 40px;
-      border-right: 1px solid var(--line);
-    }
-
-    .stat-item:last-child { border-right: none; }
-
-    .stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 400;
-      font-size: 64px;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-
-    .stat-desc {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--black);
     }
 
     /* ── MARQUEE ── */
@@ -452,19 +241,15 @@
       padding: 20px 0;
       overflow: hidden;
     }
-
     .marquee-track {
       display: flex;
-      gap: 0;
       animation: marquee 22s linear infinite;
       width: max-content;
     }
-
     @keyframes marquee {
       from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+      to   { transform: translateX(-50%); }
     }
-
     .marquee-item {
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 400;
@@ -478,10 +263,41 @@
       align-items: center;
       gap: 32px;
     }
+    .marquee-item::after { content: '·'; color: var(--black); }
 
-    .marquee-item::after {
-      content: '·';
+    /* ── ABOUT ── */
+    .about-section {
+      border-top: 1px solid var(--line);
+    }
+    .about-left {
+      padding: 80px 40px;
+      max-width: 756px;
+      border-right: 1px solid var(--line);
+    }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       color: var(--black);
+      margin-bottom: 48px;
+    }
+    .about-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+    .about-body {
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: -0.04em;
+      color: var(--black);
+      max-width: 409px;
     }
 
     /* ── CONTACT ── */
@@ -492,7 +308,6 @@
       justify-content: space-between;
       align-items: flex-end;
     }
-
     .contact-heading {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 400;
@@ -501,7 +316,6 @@
       letter-spacing: -0.02em;
       text-transform: uppercase;
     }
-
     .contact-right {
       display: flex;
       flex-direction: column;
@@ -509,7 +323,6 @@
       gap: 16px;
       padding-bottom: 8px;
     }
-
     .contact-link {
       font-size: 13px;
       font-weight: 500;
@@ -519,10 +332,7 @@
       text-decoration: none;
       border-bottom: 1px solid var(--black);
       padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
     }
-
-    .contact-link:hover { color: var(--black); border-color: var(--black); }
 
     /* ── FOOTER ── */
     footer {
@@ -532,7 +342,6 @@
       padding: 24px 40px;
       border-top: 1px solid var(--line);
     }
-
     footer span {
       font-size: 11px;
       font-weight: 400;
@@ -544,19 +353,17 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       header { padding: 20px 24px; }
-      .hero, .projects-label, .project-header { padding-left: 24px; padding-right: 24px; }
-      .project-panel-content { grid-template-columns: 1fr; padding: 32px 24px 40px; gap: 32px; }
-      .panel-col { padding-right: 0; }
-      .about-section { grid-template-columns: 1fr; }
-      .about-left { border-right: none; border-bottom: 1px solid var(--line); padding: 48px 24px; }
-      .about-right { padding: 48px 24px; }
-      .stats-row { grid-template-columns: 1fr 1fr; }
-      .stat-item:nth-child(2) { border-right: none; }
-      .stat-item { padding: 32px 24px; }
+      .projects-label, .project-header { padding-left: 24px; padding-right: 24px; }
+      .hero-photo-row:nth-child(1),
+      .hero-photo-row:nth-child(2),
+      .hero-photo-row:nth-child(3),
+      .hero-photo-row:nth-child(4) { width: 80vw; }
+      .hero-photo-row:nth-child(3) img { aspect-ratio: 4/3; }
+      .projects-overlay { position: static; margin-top: 0; }
+      .about-left { border-right: none; padding: 48px 24px; max-width: 100%; }
       .contact-section { flex-direction: column; align-items: flex-start; gap: 40px; padding: 64px 24px; }
       .contact-right { align-items: flex-start; }
       footer { padding: 20px 24px; }
-      .hero-desc { display: none; }
     }
   </style>
 </head>
@@ -567,8 +374,9 @@
   <!-- HEADER -->
   <header>
     <div class="header-left">
-      <h1>Ziv Fishman</h1>
-      <span>UX / UI Designer</span>
+      <h1>
+        <span class="name-font">Ziv Fishman</span><span class="portfolio-tag"> / portfolio</span>
+      </h1>
     </div>
     <div class="header-right">
       <a href="mailto:ziv.f22@gmail.com">ziv.f22@gmail.com</a>
@@ -580,65 +388,67 @@
 
   <main>
 
-    <div class="hero-photos">
-      <a class="hero-photo-row" href="project-healthtrack.html" style="z-index:1" data-photo="1">
-        <img src="https://picsum.photos/seed/stack1/1400/788" alt="Yeezy Breezy" />
-      </a>
-      <a class="hero-photo-row" href="project-findash.html" style="z-index:2" data-photo="2">
-        <img src="https://picsum.photos/seed/stack2/1400/788" alt="Parkhunt" />
-      </a>
-      <a class="hero-photo-row" href="project-mangomarket.html" style="z-index:3" data-photo="3">
-        <img src="https://picsum.photos/seed/stack3/1400/788" alt="Yes Is More" />
-      </a>
-      <a class="hero-photo-row" href="project-pulsehr.html" style="z-index:4" data-photo="4">
-        <img src="https://picsum.photos/seed/stack4/1400/788" alt="Moodify" />
-      </a>
-    </div>
+    <!-- HERO: photos centered, project list overlaid -->
+    <div class="hero-section">
 
-    <!-- PROJECTS -->
-    <div class="projects-label">
-      <span>Selected Work</span>
-      <span>2022 — 2025</span>
-    </div>
+      <div class="hero-photos">
+        <a class="hero-photo-row" href="project-healthtrack.html" data-photo="1">
+          <img src="https://picsum.photos/seed/stack1/1400/788" alt="Yeezy Breezy" />
+        </a>
+        <a class="hero-photo-row" href="project-findash.html" data-photo="2">
+          <img src="https://picsum.photos/seed/stack2/1400/788" alt="Parkhunt" />
+        </a>
+        <a class="hero-photo-row" href="project-mangomarket.html" data-photo="3">
+          <img src="https://picsum.photos/seed/stack3/1400/788" alt="Yes Is More" />
+        </a>
+        <a class="hero-photo-row" href="project-pulsehr.html" data-photo="4">
+          <img src="https://picsum.photos/seed/stack4/1400/788" alt="Moodify" />
+        </a>
+      </div>
 
-    <!-- PROJECT 001 -->
-    <div class="project">
-      <a class="project-header" href="project-healthtrack.html" data-project="1">
-        <span class="project-num">001</span>
-        <span class="project-title">Yeezy Breezy</span>
-        <span class="project-type">Mobile App</span>
-        <span class="project-toggle">Open ↗</span>
-      </a>
-    </div>
+      <!-- Project list overlaid transparently on photos -->
+      <div class="projects-overlay">
+        <div class="projects-label">
+          <span>Selected Work</span>
+          <span>2025 — 2026</span>
+        </div>
 
-    <!-- PROJECT 002 -->
-    <div class="project">
-      <a class="project-header" href="project-findash.html" data-project="2">
-        <span class="project-num">002</span>
-        <span class="project-title">Parkhunt</span>
-        <span class="project-type">SaaS · B2B</span>
-        <span class="project-toggle">Open ↗</span>
-      </a>
-    </div>
+        <div class="project">
+          <a class="project-header" href="project-healthtrack.html" data-project="1">
+            <span class="project-num">001</span>
+            <span class="project-title">Yeezy Breezy</span>
+            <span class="project-type">Mobile App</span>
+            <span class="project-toggle">Open ↗</span>
+          </a>
+        </div>
 
-    <!-- PROJECT 003 -->
-    <div class="project">
-      <a class="project-header" href="project-mangomarket.html" data-project="3">
-        <span class="project-num">003</span>
-        <span class="project-title">Yes Is More</span>
-        <span class="project-type">E-Commerce</span>
-        <span class="project-toggle">Open ↗</span>
-      </a>
-    </div>
+        <div class="project">
+          <a class="project-header" href="project-findash.html" data-project="2">
+            <span class="project-num">002</span>
+            <span class="project-title">Parkhunt</span>
+            <span class="project-type">Mobile App</span>
+            <span class="project-toggle">Open ↗</span>
+          </a>
+        </div>
 
-    <!-- PROJECT 004 -->
-    <div class="project">
-      <a class="project-header" href="project-pulsehr.html" data-project="4">
-        <span class="project-num">004</span>
-        <span class="project-title">Moodify</span>
-        <span class="project-type">Web App</span>
-        <span class="project-toggle">Open ↗</span>
-      </a>
+        <div class="project">
+          <a class="project-header" href="project-mangomarket.html" data-project="3">
+            <span class="project-num">003</span>
+            <span class="project-title">Yes Is More</span>
+            <span class="project-type">Catalogue</span>
+            <span class="project-toggle">Open ↗</span>
+          </a>
+        </div>
+
+        <div class="project">
+          <a class="project-header" href="project-pulsehr.html" data-project="4">
+            <span class="project-num">004</span>
+            <span class="project-title">Moodify</span>
+            <span class="project-type">Mobile App</span>
+            <span class="project-toggle">Open ↗</span>
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- MARQUEE -->
@@ -671,8 +481,7 @@
         <p class="section-tag">About</p>
         <h3 class="about-heading">I Design<br />With Intent.</h3>
         <p class="about-body">
-          I'm <strong>Ziv Fishman</strong>, a UX/UI designer who believes great design is invisible — it just works. I combine <strong>user research</strong> with strong visual craft to build products people actually enjoy using.<br /><br />
-          Currently studying and open to freelance projects and full-time opportunities.
+          Hi, my name is Ziv I'm a third year Visual Communication student based in Holon, but originally from a small small town called Benaya. I'm a third year Visual Communication student at HIT, focused on understanding user needs and creating intuitive, aesthetic solutions that solve real problems, with a focus on UX/UI, branding, typography, concept driven design.
         </p>
       </div>
     </div>
@@ -682,8 +491,7 @@
       <h3 class="contact-heading">Let's<br />Work<br />Together.</h3>
       <div class="contact-right">
         <a href="mailto:ziv.f22@gmail.com" class="contact-link">ziv.f22@gmail.com</a>
-        <a href="#" class="contact-link">LinkedIn ↗</a>
-        <a href="#" class="contact-link">Behance ↗</a>
+        <a href="#" class="contact-link">Instagram ↗</a>
         <a href="#" class="contact-link">Download CV ↗</a>
       </div>
     </div>
@@ -695,7 +503,6 @@
     <span>© 2026 Ziv Fishman</span>
     <span>UX / UI Designer — Israel</span>
     <span>All Rights Reserved</span>
-
   </footer>
 
   <script>
@@ -712,15 +519,11 @@
 
     // Custom cursor
     const cursor = document.getElementById('cursor');
-    let mx = 0, my = 0;
     document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px';
-      cursor.style.top = my + 'px';
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
     });
-
-    const hoverEls = document.querySelectorAll('a, button, .project-header');
-    hoverEls.forEach(el => {
+    document.querySelectorAll('a, button').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
@@ -742,7 +545,7 @@
       row.addEventListener('click', e => {
         e.preventDefault();
         const href = row.getAttribute('href');
-        const idx = row.dataset.project;
+        const idx  = row.dataset.project;
         const photo = document.querySelector(`.hero-photo-row[data-photo="${idx}"]`);
         if (!photo) { window.location = href; return; }
 
@@ -783,6 +586,20 @@
       });
     });
 
+    // Also handle direct clicks on photo rows
+    photos.forEach(photo => {
+      photo.addEventListener('click', e => {
+        e.preventDefault();
+        const href = photo.getAttribute('href');
+        const idx  = photo.dataset.photo;
+        const matchingRow = document.querySelector(`.project-header[data-project="${idx}"]`);
+        if (matchingRow) {
+          matchingRow.click();
+        } else {
+          window.location = href;
+        }
+      });
+    });
   </script>
 
 </body>
