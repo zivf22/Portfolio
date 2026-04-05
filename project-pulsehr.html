@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@100;200;300;400&display=swap" rel="stylesheet" />
-  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
@@ -17,7 +16,6 @@
     .cursor.hover { width: 48px; height: 48px; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
     .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
-    .header-left a:hover { color: var(--black); }
     .header-right { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
     .split { display: grid; grid-template-columns: 1fr 2fr; margin-top: var(--header); min-height: calc(100vh - var(--header)); }
     .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; border-right: 1px solid var(--line); padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
@@ -34,15 +32,15 @@
     .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .left-bottom { margin-top: auto; padding-top: 40px; }
     .panel-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
-    .panel-link:hover { color: var(--black); border-color: var(--black); }
     .split-right { padding: 0; }
     .photo-item { overflow: hidden; display: block; }
-    .photo-item img { width: 100%; display: block; filter: grayscale(8%); transition: filter 0.5s, transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .photo-item:hover img { filter: grayscale(0%); transform: scale(1.02); }
+    .photo-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .photo-item:hover img { transform: scale(1.02); }
     .photo-item.wide img  { aspect-ratio: 4/3; object-fit: cover; }
     .photo-item.tall img  { aspect-ratio: 2/3; object-fit: cover; }
     .photo-item.square img { aspect-ratio: 1/1; object-fit: cover; }
     .photo-item.banner img { aspect-ratio: 21/9; object-fit: cover; }
+    .photo-item.auto img  { aspect-ratio: auto; object-fit: contain; background: var(--white); }
     .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
@@ -69,31 +67,39 @@
   <div class="split">
     <div class="split-left">
       <div>
-        <p class="project-num">Moodify · 2023</p>
-        <h1 class="project-name">Mood<br />ify</h1>
-        <p class="project-tagline">A human resources platform redesign — reducing friction in employee onboarding and streamlining daily task management for teams of all sizes.</p>
+        <p class="project-num">Moodify · 2025</p>
+        <h1 class="project-name">Mood-<br />ify</h1>
+        <p class="project-tagline">Pharma &amp; Health Care App</p>
         <div class="divider"></div>
         <div class="info-block">
-          <p class="info-label">Overview</p>
-          <p class="info-text">Moodify serves mid-size companies in rapid growth. Their onboarding tool was a static PDF checklist emailed on day one — unsearchable, un-trackable, and often ignored.<br /><br />I facilitated discovery workshops with HR managers and new joiners. The recurring theme: the first week felt like a scavenger hunt. Nobody knew where to look for what.</p>
+          <p class="info-label">The Brief</p>
+          <p class="info-text">A large pharmaceutical company invited us to take part in its innovation process, with the aim of predicting what medicine will look like in about 5 years.</p>
+        </div>
+        <div class="info-block">
+          <p class="info-label">The Problem</p>
+          <p class="info-text">We have all experienced losing control of our emotions more than once. We have done things we are not proud of and experienced difficult moments that we did not know how to get out of.</p>
+        </div>
+        <div class="info-block">
+          <p class="info-label">Our Story</p>
+          <p class="info-text">The year is 2030. Technology is already advancing — every teenager who turns 18 receives a chip implanted in their brain. The chip interfaces with the app we created, allowing control of emotions.<br /><br />The chip reads brain waves and updates the app with emotion metrics in real time. The user can choose to control the emotion metric via the app, and the chip sends signals back to the brain.<br /><br />Audience: ages 18+, financially capable.</p>
         </div>
         <div class="divider"></div>
         <div class="meta-grid">
           <div class="info-block">
-            <p class="info-label">Role</p>
-            <p class="info-text">Senior UX Designer</p>
+            <p class="info-label">Course ID</p>
+            <p class="info-text">Product Design 2025</p>
           </div>
           <div class="info-block">
-            <p class="info-label">Type</p>
-            <p class="info-text">Web App</p>
+            <p class="info-label">Mentor</p>
+            <p class="info-text">Shai Haim</p>
           </div>
           <div class="info-block">
-            <p class="info-label">Challenge</p>
-            <p class="info-text">Disconnected tools making the first week a confusing scavenger hunt.</p>
+            <p class="info-label">Team</p>
+            <p class="info-text">Shay Givoli &amp; Me</p>
           </div>
           <div class="info-block">
-            <p class="info-label">Outcome</p>
-            <p class="info-text">Onboarding time cut by 50%. Manager overhead reduced by 3 hrs/week.</p>
+            <p class="info-label">Scope</p>
+            <p class="info-text">8 weeks</p>
           </div>
         </div>
         <div class="divider"></div>
@@ -101,11 +107,10 @@
           <p class="info-label">Tools Used</p>
           <div class="tags">
             <span class="tag">Figma</span>
-            <span class="tag">FigJam</span>
-            <span class="tag">Dovetail</span>
-            <span class="tag">Lottie</span>
-            <span class="tag">Storybook</span>
-            <span class="tag">Jira</span>
+            <span class="tag">Gemini</span>
+            <span class="tag">Illustrator</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">ChatGPT</span>
           </div>
         </div>
       </div>
@@ -117,36 +122,37 @@
       <div class="photo-row one">
         <div class="photo-item wide"><img src="images/hero-moodify.jpg" alt="" /></div>
       </div>
-      <div class="photo-row two">
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr2/600/600" alt="" /></div>
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr3/600/600" alt="" /></div>
+      <div class="photo-row one">
+        <div class="photo-item wide"><img src="images/mo-styleguide.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item banner"><img src="https://picsum.photos/seed/hr4/1200/500" alt="" /></div>
-      </div>
-      <div class="photo-row three">
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr5/500/500" alt="" /></div>
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr6/500/500" alt="" /></div>
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr7/500/500" alt="" /></div>
-      </div>
-      <div class="photo-row two">
-        <div class="photo-item tall"><img src="https://picsum.photos/seed/hr8/600/900" alt="" /></div>
-        <div class="photo-item tall"><img src="https://picsum.photos/seed/hr9/600/900" alt="" /></div>
+        <div class="photo-item wide"><img src="images/mo-typography.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="https://picsum.photos/seed/hr10/900/680" alt="" /></div>
-      </div>
-      <div class="photo-row two">
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr11/600/600" alt="" /></div>
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr12/600/600" alt="" /></div>
-      </div>
-      <div class="photo-row three">
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr13/500/500" alt="" /></div>
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr14/500/500" alt="" /></div>
-        <div class="photo-item square"><img src="https://picsum.photos/seed/hr15/500/500" alt="" /></div>
+        <div class="photo-item wide"><img src="images/mo-palette.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item banner"><img src="https://picsum.photos/seed/hr16/1200/500" alt="" /></div>
+        <div class="photo-item banner"><img src="images/mo-userflow.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item wide"><img src="images/mo-screens1.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item wide"><img src="images/mo-screens2.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item wide"><img src="images/mo-screens3.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row two">
+        <div class="photo-item square"><img src="images/mo-screens4.jpg" alt="" /></div>
+        <div class="photo-item square"><img src="images/mo-screens5.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item wide"><img src="images/mo-package1.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row two">
+        <div class="photo-item square"><img src="images/mo-package2.jpg" alt="" /></div>
+        <div class="photo-item square"><img src="images/mo-package3.jpg" alt="" /></div>
       </div>
       <a href="project-healthtrack.html" class="next-project">
         <div><p class="next-label">Back to First</p><p class="next-title">Yeezy Breezy</p></div>
@@ -160,7 +166,6 @@
     </div>
   </div>
   <script>
-    // Entry transition from main page
     (function() {
       const raw = sessionStorage.getItem("photoTransition");
       if (!raw) return;
