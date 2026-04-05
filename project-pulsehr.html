@@ -41,6 +41,10 @@
     .photo-item.square img { aspect-ratio: 1/1; object-fit: cover; }
     .photo-item.banner img { aspect-ratio: 21/9; object-fit: cover; }
     .photo-item.auto img  { aspect-ratio: auto; object-fit: contain; background: var(--white); }
+    .photo-item.r2x1 img  { aspect-ratio: 2/1; object-fit: cover; }
+    .photo-item.r32 img   { aspect-ratio: 3/2; object-fit: cover; }
+    .photo-item.r916 img  { aspect-ratio: 9/16; object-fit: cover; }
+    .photo-item.rstrip img { aspect-ratio: 16/3; object-fit: cover; }
     .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
@@ -123,36 +127,36 @@
         <div class="photo-item wide"><img src="images/hero-moodify.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/mo-styleguide.jpg" alt="" /></div>
+        <div class="photo-item rstrip"><img src="images/mo-styleguide.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/mo-typography.jpg" alt="" /></div>
+        <div class="photo-item rstrip"><img src="images/mo-typography.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/mo-palette.jpg" alt="" /></div>
+        <div class="photo-item r2x1"><img src="images/mo-palette.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item banner"><img src="images/mo-userflow.jpg" alt="" /></div>
+        <div class="photo-item rstrip"><img src="images/mo-userflow.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/mo-screens1.jpg" alt="" /></div>
+        <div class="photo-item rstrip"><img src="images/mo-screens1.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/mo-screens2.jpg" alt="" /></div>
+        <div class="photo-item r2x1"><img src="images/mo-screens2.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/mo-screens3.jpg" alt="" /></div>
+        <div class="photo-item r2x1"><img src="images/mo-screens3.jpg" alt="" /></div>
       </div>
       <div class="photo-row two">
-        <div class="photo-item square"><img src="images/mo-screens4.jpg" alt="" /></div>
-        <div class="photo-item square"><img src="images/mo-screens5.jpg" alt="" /></div>
+        <div class="photo-item tall"><img src="images/mo-screens4.jpg" alt="" /></div>
+        <div class="photo-item tall"><img src="images/mo-screens5.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/mo-package1.jpg" alt="" /></div>
+        <div class="photo-item r32"><img src="images/mo-package1.jpg" alt="" /></div>
       </div>
       <div class="photo-row two">
-        <div class="photo-item square"><img src="images/mo-package2.jpg" alt="" /></div>
-        <div class="photo-item square"><img src="images/mo-package3.jpg" alt="" /></div>
+        <div class="photo-item r916"><img src="images/mo-package2.jpg" alt="" /></div>
+        <div class="photo-item r916"><img src="images/mo-package3.jpg" alt="" /></div>
       </div>
       <a href="project-healthtrack.html" class="next-project">
         <div><p class="next-label">Back to First</p><p class="next-title">Yeezy Breezy</p></div>

@@ -41,6 +41,14 @@
     .photo-item.square img { aspect-ratio: 1/1; object-fit: cover; }
     .photo-item.banner img { aspect-ratio: 21/9; object-fit: cover; }
     .photo-item.auto img  { aspect-ratio: auto; object-fit: contain; background: var(--white); }
+    .photo-item.r169 img  { aspect-ratio: 16/9; object-fit: cover; }
+    .photo-item.r2x1 img  { aspect-ratio: 2/1; object-fit: cover; }
+    .photo-item.r53 img   { aspect-ratio: 5/3; object-fit: cover; }
+    .photo-item.r94 img   { aspect-ratio: 9/4; object-fit: cover; }
+    .photo-item.r125 img  { aspect-ratio: 12/5; object-fit: cover; }
+    .photo-item.r32 img   { aspect-ratio: 3/2; object-fit: cover; }
+    .photo-item.r916 img  { aspect-ratio: 9/16; object-fit: cover; }
+    .photo-item.rstrip img { aspect-ratio: 16/3; object-fit: cover; }
     .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
@@ -115,24 +123,26 @@
         <div class="photo-item wide"><img src="images/hero-parkhunt.jpg" alt="" /></div>
       </div>
       <div class="photo-row two">
-        <div class="photo-item square"><img src="images/ph-styleguide1.jpg" alt="" /></div>
-        <div class="photo-item square"><img src="images/ph-styleguide2.jpg" alt="" /></div>
+        <div class="photo-item r53"><img src="images/ph-styleguide1.jpg" alt="" /></div>
+        <div class="photo-item r53"><img src="images/ph-styleguide2.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item banner"><img src="images/ph-userflow.jpg" alt="" /></div>
+        <div class="photo-item r94"><img src="images/ph-userflow.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/ph-research1.jpg" alt="" /></div>
-      </div>
-      <div class="photo-row two">
-        <div class="photo-item square"><img src="images/ph-research2.jpg" alt="" /></div>
-        <div class="photo-item square"><img src="images/ph-research3.jpg" alt="" /></div>
+        <div class="photo-item r125"><img src="images/ph-research1.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/ph-persona.jpg" alt="" /></div>
+        <div class="photo-item r125"><img src="images/ph-research2.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/ph-screens.jpg" alt="" /></div>
+        <div class="photo-item r125"><img src="images/ph-research3.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item square"><img src="images/ph-persona.jpg" alt="" /></div>
+      </div>
+      <div class="photo-row one">
+        <div class="photo-item r125"><img src="images/ph-screens.jpg" alt="" /></div>
       </div>
       <a href="project-mangomarket.html" class="next-project">
         <div><p class="next-label">Next Project</p><p class="next-title">Yes Is More</p></div>
