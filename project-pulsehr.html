@@ -45,10 +45,11 @@
     .photo-item.r32 img   { aspect-ratio: 3/2; object-fit: cover; }
     .photo-item.r916 img  { aspect-ratio: 9/16; object-fit: cover; }
     .photo-item.rstrip img { aspect-ratio: 16/3; object-fit: cover; }
-    .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
+    .photo-row { display: grid; gap: 0; }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
     .photo-row.one { grid-template-columns: 1fr; }
+    .photo-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); padding: 20px 0 4px; display: block; }
     .next-project { display: flex; align-items: center; justify-content: space-between; padding: 40px; border-top: 1px solid var(--line); text-decoration: none; color: var(--black); transition: background 0.2s; }
     .next-project:hover { background: #f5f5f5; }
     .next-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 8px; }
@@ -126,15 +127,19 @@
       <div class="photo-row one">
         <div class="photo-item wide"><img src="images/hero-moodify.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[style guide]</span>
       <div class="photo-row one">
         <div class="photo-item rstrip"><img src="images/mo-styleguide.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[typography]</span>
       <div class="photo-row one">
         <div class="photo-item rstrip"><img src="images/mo-typography.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[palette]</span>
       <div class="photo-row one">
         <div class="photo-item r2x1"><img src="images/mo-palette.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[user flow]</span>
       <div class="photo-row one">
         <div class="photo-item rstrip"><img src="images/mo-userflow.jpg" alt="" /></div>
       </div>
@@ -151,6 +156,7 @@
         <div class="photo-item tall"><img src="images/mo-screens4.jpg" alt="" /></div>
         <div class="photo-item tall"><img src="images/mo-screens5.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[package]</span>
       <div class="photo-row one">
         <div class="photo-item r32"><img src="images/mo-package1.jpg" alt="" /></div>
       </div>
@@ -225,9 +231,6 @@
 
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
-    document.querySelectorAll(".photo-row").forEach((row, i) => {
-      row.style.zIndex = i + 1;
-    });
     document.querySelectorAll("a").forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));

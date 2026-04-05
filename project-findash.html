@@ -49,10 +49,11 @@
     .photo-item.r32 img   { aspect-ratio: 3/2; object-fit: cover; }
     .photo-item.r916 img  { aspect-ratio: 9/16; object-fit: cover; }
     .photo-item.rstrip img { aspect-ratio: 16/3; object-fit: cover; }
-    .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
+    .photo-row { display: grid; gap: 0; }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
     .photo-row.one { grid-template-columns: 1fr; }
+    .photo-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); padding: 20px 0 4px; display: block; }
     .next-project { display: flex; align-items: center; justify-content: space-between; padding: 40px; border-top: 1px solid var(--line); text-decoration: none; color: var(--black); transition: background 0.2s; }
     .next-project:hover { background: #f5f5f5; }
     .next-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 8px; }
@@ -122,13 +123,16 @@
       <div class="photo-row one">
         <div class="photo-item wide"><img src="images/hero-parkhunt.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[style guide]</span>
       <div class="photo-row two">
         <div class="photo-item r53"><img src="images/ph-styleguide1.jpg" alt="" /></div>
         <div class="photo-item r53"><img src="images/ph-styleguide2.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[user flow]</span>
       <div class="photo-row one">
         <div class="photo-item r94"><img src="images/ph-userflow.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[research]</span>
       <div class="photo-row one">
         <div class="photo-item r125"><img src="images/ph-research1.jpg" alt="" /></div>
       </div>
@@ -138,9 +142,11 @@
       <div class="photo-row one">
         <div class="photo-item r125"><img src="images/ph-research3.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[persona]</span>
       <div class="photo-row one">
         <div class="photo-item square"><img src="images/ph-persona.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[screens]</span>
       <div class="photo-row one">
         <div class="photo-item r125"><img src="images/ph-screens.jpg" alt="" /></div>
       </div>
@@ -211,9 +217,6 @@
 
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
-    document.querySelectorAll(".photo-row").forEach((row, i) => {
-      row.style.zIndex = i + 1;
-    });
     document.querySelectorAll("a").forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
