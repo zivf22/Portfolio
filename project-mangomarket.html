@@ -42,6 +42,8 @@
     .photo-item.banner img { aspect-ratio: 21/9; object-fit: cover; }
     .photo-item.auto img  { aspect-ratio: auto; object-fit: contain; background: var(--white); }
     .photo-item.r53 img   { aspect-ratio: 5/3; object-fit: cover; }
+    .photo-item.catalogue { position: relative; overflow: hidden; aspect-ratio: 16/9; display: block; }
+    .photo-item.catalogue img { position: absolute; width: 56.25%; height: auto; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(90deg); transition: none; aspect-ratio: auto; object-fit: unset; }
     .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
@@ -110,34 +112,34 @@
         <div class="photo-item wide"><img src="images/hero-yesismore.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page0.jpg" alt="" style="transform:rotate(1.2deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page0.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page1.jpg" alt="" style="transform:rotate(0.53deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page1.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page2.jpg" alt="" style="transform:rotate(0.99deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page2.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page3.jpg" alt="" style="transform:rotate(1.2deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page3.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page4.jpg" alt="" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page4.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page5.jpg" alt="" style="transform:rotate(0.7deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page5.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page6.jpg" alt="" style="transform:rotate(1.2deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page6.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page7.jpg" alt="" style="transform:rotate(0.77deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page7.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page8.jpg" alt="" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page8.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r53"><img src="images/ym-page9.jpg" alt="" style="transform:rotate(-0.13deg);" /></div>
+        <div class="photo-item catalogue"><img src="images/ym-page9.jpg" alt="" /></div>
       </div>
       <a href="project-pulsehr.html" class="next-project">
         <div><p class="next-label">Next Project</p><p class="next-title">Moodify</p></div>
