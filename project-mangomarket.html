@@ -43,7 +43,7 @@
     .photo-item.auto img  { aspect-ratio: auto; object-fit: contain; background: var(--white); }
     .photo-item.r53 img   { aspect-ratio: 5/3; object-fit: cover; }
     .photo-item.catalogue { position: relative; overflow: hidden; aspect-ratio: 16/9; display: block; }
-    .photo-item.catalogue img { position: absolute; width: 56.25%; height: auto; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(90deg); transition: none; aspect-ratio: auto; object-fit: unset; }
+    .photo-item.catalogue img { position: absolute; width: 56.25%; height: calc(100% * 16 / 9); top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(90deg); transition: none; aspect-ratio: auto; object-fit: cover; }
     .photo-item.catalogue.flip img { transform: translate(-50%,-50%) rotate(-90deg); }
     .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
