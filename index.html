@@ -20,6 +20,38 @@
 
     html { scroll-behavior: smooth; }
 
+    /* ── LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      pointer-events: all;
+    }
+    .loader-half {
+      background: var(--white);
+      transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    #loader.split .loader-half:first-child { transform: translateX(-100%); }
+    #loader.split .loader-half:last-child  { transform: translateX(100%); }
+    .loader-vline {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 1px;
+      height: 0;
+      background: var(--black);
+      transform: translate(-50%, -50%);
+      z-index: 10001;
+      animation: drawVLine 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.2s forwards;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    @keyframes drawVLine {
+      to { height: 100vh; }
+    }
+
     body {
       background: var(--white);
       color: var(--black);
@@ -32,16 +64,35 @@
     /* ── CUSTOM CURSOR ── */
     .cursor {
       position: fixed;
-      width: 10px; height: 10px;
-      background: var(--black);
-      border-radius: 50%;
+      width: 25px; height: 25px;
+      background: white;
+      -webkit-mask: url('images/cursor-t.png') center/contain no-repeat;
+      mask: url('images/cursor-t.png') center/contain no-repeat;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
       transition: width 0.3s, height 0.3s;
       mix-blend-mode: difference;
     }
-    .cursor.hover { width: 48px; height: 48px; }
+    .cursor.hover { width: 36px; height: 36px; }
+    .cursor.open-project {
+      width: auto; height: auto;
+      -webkit-mask: none;
+      mask: none;
+      background: transparent;
+      mix-blend-mode: difference;
+      padding: 4px 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     /* ── HEADER ── */
     header {
@@ -72,7 +123,7 @@
       font-weight: 600;
       font-size: 11px;
       letter-spacing: 0.08em;
-      text-transform: lowercase;
+      text-transform: uppercase;
       color: var(--black);
       margin-left: 4px;
     }
@@ -110,58 +161,60 @@
 
     /* ── HERO SECTION ── */
     .hero-section {
-      position: relative;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
     }
 
-    /* Photos: centered column, photos sit in the page center */
     .hero-photos {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .photos-track {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
-      padding-top: 80px;
-      padding-bottom: 60px;
+      gap: 20px;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
     }
 
     .hero-photo-row {
+      flex-shrink: 0;
       overflow: hidden;
-      display: block;
-      position: relative;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .hero-photo-row:hover,
-    .hero-photo-row.expanded {
-      transform: scaleX(1.06);
-    }
+
     .hero-photo-row img {
       width: 100%;
       display: block;
       object-fit: cover;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .hero-photo-row:hover img,
-    .hero-photo-row.expanded img { transform: scale(1.04); }
 
-    /* Varying photo widths & aspect ratios (scaled from 1512px Figma design) */
-    .hero-photo-row:nth-child(1) { width: 27.25vw; }
-    .hero-photo-row:nth-child(1) img { aspect-ratio: 412/250; }
-
-    .hero-photo-row:nth-child(2) { width: 30.56vw; }
-    .hero-photo-row:nth-child(2) img { aspect-ratio: 462/268; }
-
-    .hero-photo-row:nth-child(3) { width: 19.18vw; }
-    .hero-photo-row:nth-child(3) img { aspect-ratio: 290/372; }
-
-    .hero-photo-row:nth-child(4) { width: 27.25vw; }
-    .hero-photo-row:nth-child(4) img { aspect-ratio: 412/255; }
+    /* Original Figma sizes — keyed to data-photo so clones inherit them */
+    .hero-photo-row[data-photo="1"] { width: 27.25vw; }
+    .hero-photo-row[data-photo="1"] img { aspect-ratio: 412/250; }
+    .hero-photo-row[data-photo="2"] { width: 30.56vw; }
+    .hero-photo-row[data-photo="2"] img { aspect-ratio: 462/268; }
+    .hero-photo-row[data-photo="3"] { width: 19.18vw; }
+    .hero-photo-row[data-photo="3"] img { aspect-ratio: 290/372; }
+    .hero-photo-row[data-photo="4"] { width: 27.25vw; }
+    .hero-photo-row[data-photo="4"] img { aspect-ratio: 412/255; }
 
     /* Projects overlay: absolutely on top of photos, transparent center */
     .projects-overlay {
-      position: absolute;
-      top: 113px; /* 189px figma - 76px main padding-top */
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
       left: 0; right: 0;
       z-index: 2;
+      pointer-events: none;
     }
+    .project-header { pointer-events: none; }
+    .project-header > * { pointer-events: auto; }
 
     /* ── PROJECTS LABEL ── */
     .projects-label {
@@ -169,7 +222,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--line);
     }
     .projects-label span {
       font-size: 11px;
@@ -180,12 +232,12 @@
     }
 
     /* ── PROJECT ROW ── */
-    .project { border-bottom: 1px solid var(--line); }
+    .project { }
 
     .project-header {
       display: flex;
       align-items: center;
-      padding: 0 40px;
+      padding: 28px 40px;
       gap: 32px;
       cursor: none;
       text-decoration: none;
@@ -198,21 +250,20 @@
       letter-spacing: 0.12em;
       color: var(--black);
       min-width: 36px;
-      padding: 28px 0;
       flex-shrink: 0;
     }
     .project-title {
-      flex: 1;
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 400;
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       line-height: 1;
-      padding: 20px 0;
-      transition: letter-spacing 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .project-header:hover .project-title { letter-spacing: 0.18em; }
+
+    .project-header.active .project-title { font-weight: 600; }
+    .project-header { opacity: 0.35; transition: opacity 0.4s ease; }
+    .project-header.active { opacity: 1; }
 
     .project-type {
       font-size: 11px;
@@ -220,59 +271,24 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--black);
-      text-align: right;
-      min-width: 100px;
       flex-shrink: 0;
+      margin-left: auto;
     }
     .project-toggle {
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      min-width: 60px;
-      text-align: right;
       flex-shrink: 0;
     }
 
-    /* ── MARQUEE ── */
-    .marquee-section {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 20px 0;
-      overflow: hidden;
-    }
-    .marquee-track {
-      display: flex;
-      animation: marquee 22s linear infinite;
-      width: max-content;
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .marquee-item {
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 400;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--black);
-      white-space: nowrap;
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .marquee-item::after { content: '·'; color: var(--black); }
 
     /* ── ABOUT ── */
     .about-section {
-      border-top: 1px solid var(--line);
     }
     .about-left {
       padding: 80px 40px;
       max-width: 756px;
-      border-right: 1px solid var(--line);
     }
     .section-tag {
       font-size: 11px;
@@ -334,20 +350,43 @@
       padding-bottom: 2px;
     }
 
+
+    /* ── BACK UP BUTTON ── */
+    .back-up-btn {
+      display: block;
+      margin: 48px auto 0;
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--black);
+      border-radius: 50%;
+      background: none;
+      font-size: 20px;
+      cursor: none;
+      color: var(--black);
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-up-btn:hover { background: var(--black); color: var(--white); }
+
     /* ── FOOTER ── */
     footer {
+      position: fixed;
+      bottom: 0;
+      left: 0; right: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 24px 40px;
-      border-top: 1px solid var(--line);
+      padding: 16px 40px;
+      background: transparent;
+      z-index: 50;
+      mix-blend-mode: difference;
     }
     footer span {
       font-size: 11px;
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--white);
+      mix-blend-mode: difference;
     }
 
     /* ── RESPONSIVE ── */
@@ -369,22 +408,30 @@
 </head>
 <body>
 
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-half"></div>
+    <div class="loader-half"></div>
+  </div>
+  <div class="loader-vline" id="loaderLine"></div>
+
   <div class="cursor" id="cursor"></div>
 
   <!-- HEADER -->
   <header>
     <div class="header-left">
       <h1>
-        <span class="name-font">Ziv Fishman</span><span class="portfolio-tag"> / portfolio</span>
+        <span class="name-font">Ziv Fishman</span><span class="portfolio-tag"> / PORTFOLIO</span>
       </h1>
     </div>
     <div class="header-right">
       <a href="mailto:ziv.f22@gmail.com">ziv.f22@gmail.com</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#" id="btn-about">About</a>
+      <a href="#" id="btn-contact">Contact</a>
       <div id="clock">--:--:--</div>
     </div>
   </header>
+
 
   <main>
 
@@ -392,18 +439,20 @@
     <div class="hero-section">
 
       <div class="hero-photos">
-        <a class="hero-photo-row" href="project-healthtrack.html" data-photo="1">
-          <img src="images/hero-yeezy.jpg" alt="Yeezy Breezy" />
-        </a>
-        <a class="hero-photo-row" href="project-findash.html" data-photo="2">
-          <img src="images/hero-parkhunt.jpg" alt="Parkhunt" />
-        </a>
-        <a class="hero-photo-row" href="project-mangomarket.html" data-photo="3">
-          <img src="images/hero-yesismore.jpg" alt="Yes Is More" />
-        </a>
-        <a class="hero-photo-row" href="project-pulsehr.html" data-photo="4">
-          <img src="images/hero-moodify.jpg" alt="Moodify" />
-        </a>
+        <div class="photos-track">
+          <div class="hero-photo-row" data-photo="1">
+            <img src="images/hero-yeezy.jpg" alt="Yeezy Breezy" />
+          </div>
+          <div class="hero-photo-row" data-photo="2">
+            <img src="images/hero-parkhunt.jpg" alt="Parkhunt" />
+          </div>
+          <div class="hero-photo-row" data-photo="3">
+            <img src="images/hero-yesismore.jpg" alt="Yes Is More" />
+          </div>
+          <div class="hero-photo-row" data-photo="4">
+            <img src="images/hero-moodify.jpg" alt="Moodify" />
+          </div>
+        </div>
       </div>
 
       <!-- Project list overlaid transparently on photos -->
@@ -451,48 +500,35 @@
       </div>
     </div>
 
-    <!-- MARQUEE -->
-    <div class="marquee-section">
-      <div class="marquee-track">
-        <span class="marquee-item">Figma</span>
-        <span class="marquee-item">User Research</span>
-        <span class="marquee-item">Wireframing</span>
-        <span class="marquee-item">Prototyping</span>
-        <span class="marquee-item">Design Systems</span>
-        <span class="marquee-item">Usability Testing</span>
-        <span class="marquee-item">Motion Design</span>
-        <span class="marquee-item">Adobe CC</span>
-        <span class="marquee-item">Information Architecture</span>
-        <span class="marquee-item">Figma</span>
-        <span class="marquee-item">User Research</span>
-        <span class="marquee-item">Wireframing</span>
-        <span class="marquee-item">Prototyping</span>
-        <span class="marquee-item">Design Systems</span>
-        <span class="marquee-item">Usability Testing</span>
-        <span class="marquee-item">Motion Design</span>
-        <span class="marquee-item">Adobe CC</span>
-        <span class="marquee-item">Information Architecture</span>
-      </div>
-    </div>
 
     <!-- ABOUT -->
-    <div class="about-section" id="about">
-      <div class="about-left">
-        <p class="section-tag">About</p>
-        <h3 class="about-heading">I Design<br />With Intent.</h3>
-        <p class="about-body">
-          Hi, my name is Ziv I'm a third year Visual Communication student based in Holon, but originally from a small small town called Benaya. I'm a third year Visual Communication student at HIT, focused on understanding user needs and creating intuitive, aesthetic solutions that solve real problems, with a focus on UX/UI, branding, typography, concept driven design.
-        </p>
+    <div id="about-wrapper" style="display:none;">
+      <div class="about-section">
+        <div class="about-left">
+          <p class="section-tag">About</p>
+          <h3 class="about-heading">I Design<br />With Intent.</h3>
+          <p class="about-body">
+            Hi, my name is Ziv I'm a third year Visual Communication student based in Holon, but originally from a small small town called Benaya. I'm a third year Visual Communication student at HIT, focused on understanding user needs and creating intuitive, aesthetic solutions that solve real problems, with a focus on UX/UI, branding, typography, concept driven design.
+          </p>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;padding:16px 0 40px;">
+        <button class="back-up-btn" onclick="hideSection('about-wrapper')">↑</button>
       </div>
     </div>
 
     <!-- CONTACT -->
-    <div class="contact-section" id="contact">
-      <h3 class="contact-heading">Let's<br />Work<br />Together.</h3>
-      <div class="contact-right">
-        <a href="mailto:ziv.f22@gmail.com" class="contact-link">ziv.f22@gmail.com</a>
-        <a href="#" class="contact-link">Instagram ↗</a>
-        <a href="#" class="contact-link">Download CV ↗</a>
+    <div id="contact-wrapper" style="display:none;">
+      <div class="contact-section">
+        <h3 class="contact-heading">Let's<br />Work<br />Together.</h3>
+        <div class="contact-right">
+          <a href="mailto:ziv.f22@gmail.com" class="contact-link">ziv.f22@gmail.com</a>
+          <a href="#" class="contact-link">Instagram ↗</a>
+          <a href="#" class="contact-link">Download CV ↗</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;padding:16px 0 40px;">
+        <button class="back-up-btn" onclick="hideSection('contact-wrapper')">↑</button>
       </div>
     </div>
 
@@ -501,11 +537,33 @@
   <!-- FOOTER -->
   <footer>
     <span>© 2026 Ziv Fishman</span>
+    <span style="position:absolute;left:50%;transform:translateX(-50%);">Built with Claude Code &amp; Figma</span>
     <span>UX / UI Designer — Israel</span>
-    <span>All Rights Reserved</span>
   </footer>
 
   <script>
+    // Hide section and scroll back to top
+    function hideSection(id) {
+      document.getElementById(id).style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // About / Contact reveal
+    document.getElementById('btn-about').addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.getElementById('about-wrapper');
+      el.style.display = 'block';
+      document.getElementById('contact-wrapper').style.display = 'none';
+      el.scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('btn-contact').addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.getElementById('contact-wrapper');
+      el.style.display = 'block';
+      document.getElementById('about-wrapper').style.display = 'none';
+      el.scrollIntoView({ behavior: 'smooth' });
+    });
+
     // Clock
     function updateClock() {
       const now = new Date();
@@ -518,6 +576,22 @@
     setInterval(updateClock, 1000);
 
     // Custom cursor
+    // Loader: after line draws (0.2s delay + 0.9s anim), split curtains
+    const loader = document.getElementById('loader');
+    const vline  = document.getElementById('loaderLine');
+
+    setTimeout(() => {
+      // fade line out first
+      vline.style.opacity = '0';
+      setTimeout(() => {
+        loader.classList.add('split');
+        setTimeout(() => {
+          loader.remove();
+          vline.remove();
+        }, 950);
+      }, 350);
+    }, 1200);
+
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -528,76 +602,149 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
 
-    // Project hover → expand matching photo
-    const photos = document.querySelectorAll('.hero-photo-row');
-    document.querySelectorAll('.project-header[data-project]').forEach(row => {
-      row.addEventListener('mouseenter', () => {
-        const idx = row.dataset.project;
-        photos.forEach(p => p.classList.remove('expanded'));
-        const target = document.querySelector(`.hero-photo-row[data-photo="${idx}"]`);
-        if (target) target.classList.add('expanded');
+    // Seamless infinite vertical carousel
+    const track       = document.querySelector('.photos-track');
+    const projectRows = document.querySelectorAll('.project-header[data-project]');
+    const HREFS       = ['project-healthtrack.html','project-findash.html','project-mangomarket.html','project-pulsehr.html'];
+    const GAP  = 20;
+    const REAL = 4;
+
+    // Clone before and after: [copy, original, copy]
+    const origPhotos = Array.from(document.querySelectorAll('.hero-photo-row'));
+    // Prepend in reverse so clone_p4 sits just above photo1 (correct loop order)
+    [...origPhotos].reverse().forEach(p => track.insertBefore(p.cloneNode(true), track.firstChild));
+    origPhotos.forEach(p => track.appendChild(p.cloneNode(true)));
+    const all = Array.from(document.querySelectorAll('.hero-photo-row')); // 12 total
+
+    let vIdx = REAL; // start at original set (indices 4-7)
+    let scrollLocked = false;
+    let scrollAccum  = 0;
+    const SCROLL_THRESHOLD = 60;
+
+    function translateFor(vi) {
+      const containerH = track.parentElement.offsetHeight;
+      let offset = 0;
+      for (let i = 0; i < vi; i++) offset += all[i].offsetHeight + GAP;
+      offset += all[vi].offsetHeight / 2;
+      return containerH / 2 - offset;
+    }
+
+    function setActive(ri) {
+      projectRows.forEach((r, i) => r.classList.toggle('active', i === ri));
+    }
+
+    function nearestVIdx(ri) {
+      let best = vIdx, bestDist = Infinity;
+      for (let c = 0; c < 3; c++) {
+        const v = c * REAL + ri, d = Math.abs(v - vIdx);
+        if (d < bestDist) { bestDist = d; best = v; }
+      }
+      return best;
+    }
+
+    function goTo(vi, animate) {
+      vIdx = vi;
+      setActive(vi % REAL);
+      if (animate) {
+        track.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1)';
+        requestAnimationFrame(() => {
+          track.style.transform = `translateY(${translateFor(vi)}px)`;
+        });
+      } else {
+        track.style.transition = 'none';
+        track.style.transform = `translateY(${translateFor(vi)}px)`;
+      }
+    }
+
+    function navigateTo(photo, href) {
+      const src  = photo.querySelector('img').src;
+      const from = photo.getBoundingClientRect();
+      const tL = window.innerWidth / 3, tT = 73,
+            tW = window.innerWidth * 2 / 3, tH = tW * (2 / 3);
+      const bd = document.createElement('div');
+      bd.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9997;';
+      document.body.appendChild(bd);
+      const ov = document.createElement('div');
+      ov.style.cssText = `position:fixed;left:${from.left}px;top:${from.top}px;width:${from.width}px;height:${from.height}px;overflow:hidden;z-index:9998;transition:left .7s cubic-bezier(.76,0,.24,1),top .7s cubic-bezier(.76,0,.24,1),width .7s cubic-bezier(.76,0,.24,1),height .7s cubic-bezier(.76,0,.24,1);`;
+      const im = document.createElement('img');
+      im.src = src; im.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      ov.appendChild(im); document.body.appendChild(ov);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        ov.style.left = tL+'px'; ov.style.top = tT+'px';
+        ov.style.width = tW+'px'; ov.style.height = tH+'px';
+      }));
+      sessionStorage.setItem('photoTransition', JSON.stringify({left:tL,top:tT,width:tW,height:tH,imgSrc:src}));
+      setTimeout(() => { window.location = href; }, 720);
+    }
+
+    // Init — no animation
+    goTo(REAL, false);
+
+    // After transition: silently snap back to original set if in a clone
+    track.addEventListener('transitionend', () => {
+      scrollAccum = 0;
+      const ri = vIdx % REAL;
+      if (vIdx < REAL || vIdx >= REAL * 2) {
+        goTo(REAL + ri, false);
+      }
+      setTimeout(() => { scrollLocked = false; }, 200);
+    });
+
+    // Scroll
+    document.querySelector('.hero-section').addEventListener('wheel', e => {
+      e.preventDefault();
+      if (scrollLocked) { scrollAccum = 0; return; }
+      scrollAccum += e.deltaY;
+      if (Math.abs(scrollAccum) < SCROLL_THRESHOLD) return;
+      const dir = scrollAccum > 0 ? 1 : -1;
+      scrollAccum = 0;
+      scrollLocked = true;
+      goTo(vIdx + dir, true);
+    }, { passive: false });
+
+    // Click photo
+    all.forEach((photo, vi) => {
+      photo.style.cursor = 'none';
+      photo.addEventListener('mouseenter', () => {
+        if (vi % REAL === vIdx % REAL) {
+          cursor.classList.remove('hover');
+          cursor.classList.add('open-project');
+          cursor.textContent = 'OPEN PROJECT';
+        } else {
+          cursor.classList.remove('open-project');
+          cursor.textContent = '';
+          cursor.classList.add('hover');
+        }
       });
-      row.addEventListener('mouseleave', () => {
-        photos.forEach(p => p.classList.remove('expanded'));
+      photo.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover', 'open-project');
+        cursor.textContent = '';
       });
-
-      // Click → photo expands to right column, then navigate
-      row.addEventListener('click', e => {
-        e.preventDefault();
-        const href = row.getAttribute('href');
-        const idx  = row.dataset.project;
-        const photo = document.querySelector(`.hero-photo-row[data-photo="${idx}"]`);
-        if (!photo) { window.location = href; return; }
-
-        const src  = photo.querySelector('img').src;
-        const from = photo.getBoundingClientRect();
-
-        const targetLeft   = window.innerWidth * (1 / 3);
-        const targetTop    = 73;
-        const targetWidth  = window.innerWidth * (2 / 3);
-        const targetHeight = targetWidth * (3 / 4);
-
-        // Instantly blank the page — only the photo remains visible
-        const backdrop = document.createElement('div');
-        backdrop.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9997;';
-        document.body.appendChild(backdrop);
-
-        const overlay = document.createElement('div');
-        overlay.style.cssText = `position:fixed;left:${from.left}px;top:${from.top}px;width:${from.width}px;height:${from.height}px;overflow:hidden;z-index:9998;transition:left 0.7s cubic-bezier(0.76,0,0.24,1),top 0.7s cubic-bezier(0.76,0,0.24,1),width 0.7s cubic-bezier(0.76,0,0.24,1),height 0.7s cubic-bezier(0.76,0,0.24,1);`;
-        const imgEl = document.createElement('img');
-        imgEl.src = src;
-        imgEl.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-        overlay.appendChild(imgEl);
-        document.body.appendChild(overlay);
-
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          overlay.style.left   = targetLeft + 'px';
-          overlay.style.top    = targetTop + 'px';
-          overlay.style.width  = targetWidth + 'px';
-          overlay.style.height = targetHeight + 'px';
-        }));
-
-        sessionStorage.setItem('photoTransition', JSON.stringify({
-          left: targetLeft, top: targetTop,
-          width: targetWidth, height: targetHeight,
-          imgSrc: src
-        }));
-        setTimeout(() => { window.location = href; }, 720);
+      photo.addEventListener('click', () => {
+        const ri = vi % REAL;
+        if (ri === vIdx % REAL) navigateTo(photo, HREFS[ri]);
+        else goTo(nearestVIdx(ri), true);
       });
     });
 
-    // Also handle direct clicks on photo rows
-    photos.forEach(photo => {
-      photo.addEventListener('click', e => {
+    // Click project title row — selects only
+    projectRows.forEach((row, i) => {
+      // Attach to each inner span except toggle
+      row.querySelectorAll('.project-num, .project-title, .project-type').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          if (i !== vIdx % REAL) goTo(nearestVIdx(i), true);
+        });
+      });
+
+      // "Open ↗" navigates only if this row is the active one
+      const toggle = row.querySelector('.project-toggle');
+      toggle.style.cursor = 'none';
+      toggle.addEventListener('click', e => {
+        e.stopPropagation();
         e.preventDefault();
-        const href = photo.getAttribute('href');
-        const idx  = photo.dataset.photo;
-        const matchingRow = document.querySelector(`.project-header[data-project="${idx}"]`);
-        if (matchingRow) {
-          matchingRow.click();
-        } else {
-          window.location = href;
-        }
+        const ri = vIdx % REAL;
+        if (i === ri) navigateTo(all[vIdx], row.getAttribute('href'));
       });
     });
   </script>

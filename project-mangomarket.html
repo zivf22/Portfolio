@@ -12,13 +12,13 @@
     :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
     html { scroll-behavior: smooth; }
     body { background: var(--white); color: var(--black); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; cursor: none; }
-    .cursor { position: fixed; width: 10px; height: 10px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
-    .cursor.hover { width: 48px; height: 48px; }
+    .cursor { position: fixed; width: 25px; height: 25px; background: white; -webkit-mask: url("images/cursor-t.png") center/contain no-repeat; mask: url("images/cursor-t.png") center/contain no-repeat; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+    .cursor.hover { width: 36px; height: 36px; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
     .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
     .header-right { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
     .split { display: grid; grid-template-columns: 1fr 2fr; margin-top: var(--header); min-height: calc(100vh - var(--header)); }
-    .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; border-right: 1px solid var(--line); padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
+    .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
     .split-left::-webkit-scrollbar { display: none; }
     .project-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 20px; }
     .project-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(52px, 7vw, 100px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 32px; }
@@ -34,8 +34,7 @@
     .panel-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
     .split-right { padding: 0; }
     .photo-item { overflow: hidden; display: block; }
-    .photo-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .photo-item:hover img { transform: scale(1.02); }
+    .photo-item img { width: 100%; display: block; }
     .photo-item.wide img  { aspect-ratio: 4/3; object-fit: cover; }
     .photo-item.tall img  { aspect-ratio: 2/3; object-fit: cover; }
     .photo-item.square img { aspect-ratio: 1/1; object-fit: cover; }
@@ -45,7 +44,8 @@
     .photo-item.catalogue { position: relative; overflow: hidden; aspect-ratio: 16/9; display: block; }
     .photo-item.catalogue img { position: absolute; width: 56.25%; height: calc(100% * 16 / 9); top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(90deg); transition: none; aspect-ratio: auto; object-fit: cover; }
     .photo-item.catalogue.flip img { transform: translate(-50%,-50%) rotate(-90deg); }
-    .photo-row { display: grid; gap: 0; position: sticky; top: var(--header); }
+    .photo-row { display: grid; gap: 0; }
+    .spreads-stack .photo-row { position: sticky; top: var(--header); }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
     .photo-row.one { grid-template-columns: 1fr; }
@@ -77,7 +77,7 @@
         <div class="divider"></div>
         <div class="info-block">
           <p class="info-label">Overview</p>
-          <p class="info-text">Bjarke Ingels is a Danish architect, founder and creative partner of BIG — Bjarke Ingels Group. He is the embodiment of the second generation of global starchitects.<br /><br />Rather than hectoring about environmental issues, Ingels suggests architects should find playful ways of subverting infrastructure to produce a side-effect of mass leisure.<br /><br />The catalogue is divided into 4 chapters, each focusing on a different project, with an introduction including an interview with Bjarke.<br /><br />Two recurring themes stood out in my research: his connection to nature and sustainability — which led to printing on recycled paper — and the square element, which led to a square format and an internal square grid that delimits the content throughout.</p>
+          <p class="info-text">As the founder and creative partner of Bjarke Ingels Group (BIG), Bjarke Ingels has emerged as the definitive face of a new generation of global architects. His work famously challenges traditional boundaries, blending hedonistic sustainability with functional playfulness. This catalog serves as a curated journey into that vision, exploring how Ingels perceives the future of our built environment. The catalog is structured into four distinct chapters, each dedicated to a landmark project, and is preceded by an in-depth interview that provides personal insight into his creative process.<br /><br />My research into Ingels' work revealed two consistent threads that became the foundation for the catalog's visual identity:<br /><br />Environmental Integration: A profound connection to the natural world is present in every BIG project. Sustainability isn't just a buzzword for Ingels — it is a core structural value. To honor this, I made the conscious decision to print the catalog on recycled paper, aligning the physical medium with the architect's ecological philosophy.<br /><br />Geometric Rationalism: I observed that the square element is a recurring motif in his work, representing a balance between modularity and strength. This led to the choice of a square format for the catalog itself. To maintain a cohesive visual language, I implemented a rigid external square grid that delimits the content, ensuring that the layout feels as structured and intentional as a Bjarke Ingels building.</p>
         </div>
         <div class="divider"></div>
         <div class="meta-grid">
@@ -109,6 +109,7 @@
       </div>
     </div>
     <div class="split-right">
+      <div class="spreads-stack">
       <div class="photo-row one">
         <div class="photo-item wide"><img src="images/hero-yesismore.jpg" alt="" /></div>
       </div>
@@ -119,10 +120,10 @@
         <div class="photo-item catalogue flip"><img src="images/ym-page1.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item catalogue"><img src="images/ym-page2.jpg" alt="" /></div>
+        <div class="photo-item catalogue flip"><img src="images/ym-page2.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item catalogue"><img src="images/ym-page3.jpg" alt="" /></div>
+        <div class="photo-item catalogue flip"><img src="images/ym-page3.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
         <div class="photo-item catalogue flip"><img src="images/ym-page4.jpg" alt="" /></div>
@@ -131,7 +132,7 @@
         <div class="photo-item catalogue flip"><img src="images/ym-page5.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item catalogue"><img src="images/ym-page6.jpg" alt="" /></div>
+        <div class="photo-item catalogue flip"><img src="images/ym-page6.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
         <div class="photo-item catalogue flip"><img src="images/ym-page7.jpg" alt="" /></div>
@@ -140,7 +141,8 @@
         <div class="photo-item catalogue"><img src="images/ym-page8.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item catalogue"><img src="images/ym-page9.jpg" alt="" /></div>
+        <div class="photo-item catalogue flip"><img src="images/ym-page9.jpg" alt="" /></div>
+      </div>
       </div>
       <a href="project-pulsehr.html" class="next-project">
         <div><p class="next-label">Next Project</p><p class="next-title">Moodify</p></div>

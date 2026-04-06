@@ -6,19 +6,19 @@
   <title>Yeezy Breezy — Ziv Fishman</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@100;200;300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@100;200;300;400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
     html { scroll-behavior: smooth; }
     body { background: var(--white); color: var(--black); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; cursor: none; }
-    .cursor { position: fixed; width: 10px; height: 10px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
-    .cursor.hover { width: 48px; height: 48px; }
+    .cursor { position: fixed; width: 25px; height: 25px; background: white; -webkit-mask: url("images/cursor-t.png") center/contain no-repeat; mask: url("images/cursor-t.png") center/contain no-repeat; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+    .cursor.hover { width: 36px; height: 36px; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
     .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
     .header-right { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
     .split { display: grid; grid-template-columns: 1fr 2fr; margin-top: var(--header); min-height: calc(100vh - var(--header)); }
-    .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; border-right: 1px solid var(--line); padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
+    .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
     .split-left::-webkit-scrollbar { display: none; }
     .project-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 20px; }
     .project-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(52px, 7vw, 100px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 32px; }
@@ -34,8 +34,7 @@
     .panel-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
     .split-right { padding: 0; }
     .photo-item { overflow: hidden; display: block; }
-    .photo-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .photo-item:hover img { transform: scale(1.02); }
+    .photo-item img { width: 100%; display: block; }
     .photo-item.wide img  { aspect-ratio: 4/3; object-fit: cover; }
     .photo-item.tall img  { aspect-ratio: 2/3; object-fit: cover; }
     .photo-item.square img { aspect-ratio: 1/1; object-fit: cover; }
@@ -82,7 +81,7 @@
         <div class="divider"></div>
         <div class="info-block">
           <p class="info-label">Who is Kanye?</p>
-          <p class="info-text">He is an American rapper, fashion designer, music producer, and entrepreneur. First came to prominence as a producer for Roc-a-Fella Records in the early 2000s.<br /><br />Known as a narcissist, impulsive, says whatever comes to mind, stirs up controversy, mood swings (bipolar), split personality — of course he's a Gemini.</p>
+          <p class="info-text">He is an American rapper, fashion designer, music producer, and entrepreneur. First came to prominence as a producer for the record company Roc-a-Fella Records in the early 2000s. He is famous for having absolutely no filter and staying in the headlines for all the wrong reasons. Between his impulsive outbursts and his public struggles with bipolar disorder, he has become the ultimate example of a celebrity who lives for controversy.</p>
         </div>
         <div class="info-block">
           <p class="info-label">What makes him like this?</p>
@@ -90,7 +89,7 @@
         </div>
         <div class="info-block">
           <p class="info-label">How is this reflected in the app?</p>
-          <p class="info-text">In the app, you can only see the weather for the current day. The next day will only be revealed at midnight — an element of surprise, like with Kanye.<br /><br />Two modes: calm, with clean pleasant colors; and mania, with contrasting colors that create discomfort and change as the day progresses.<br /><br />For the design, I drew inspiration from Kanye's aesthetic side — unlike his character, it is very clean and minimalist.</p>
+          <p class="info-text">In the app, you can only see the weather for the current day. The next day will only be revealed at midnight. There is an element of surprise — you never know what will come, like with Kanye. In addition, I added a feature of the reliability percentage of the weather — is it stable or may change at any moment?<br /><br />There are two modes in the app: on the one hand, calm, pleasant to the eyes, clean colors; and the second mode is mania. The use of contrasting colors creates a feeling of discomfort in the user and the "annoying" color change as the day progresses — the change becomes more frequent and cannot be interrupted, like with Kanye who does not control his moods.<br /><br />For the design itself, I chose to draw inspiration from Kanye's design side, which, unlike his character, is very clean and minimalist.</p>
         </div>
         <div class="divider"></div>
         <div class="meta-grid">
@@ -126,8 +125,9 @@
         <div class="photo-item wide"><img src="images/hero-yeezy.jpg" alt="" /></div>
       </div>
       <span class="photo-label">[logo]</span>
-      <div class="photo-row one">
-        <div class="photo-item auto"><img src="images/yb-logo.jpg" alt="" /></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 0;">
+        <p style="font-family:'Instrument Sans',sans-serif;font-size:48px;font-weight:400;color:#000;white-space:nowrap;flex:1;text-align:center;">yeezy breezy</p>
+        <div style="flex:1;display:flex;justify-content:center;transform:translate(-1cm,10px);"><img src="images/yb-logo.jpg" alt="" style="width:100%;display:block;" /></div>
       </div>
       <span class="photo-label">[style guide]</span>
       <div class="photo-row one">
@@ -137,22 +137,46 @@
       <div class="photo-row one">
         <div class="photo-item r2x1"><img src="images/yb-userflow-diagram.jpg" alt="" /></div>
       </div>
-      <div class="photo-row one">
-        <div class="photo-item r2x1"><img src="images/yb-userflow1.jpg" alt="" /></div>
+      <div style="position:relative;">
+        <div style="position:sticky;top:var(--header);z-index:1;">
+          <div class="photo-row one">
+            <div class="photo-item square"><img src="images/yb-inspiration.jpg" alt="" /></div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;">
+          <div class="photo-row one" style="position:sticky;top:30vh;display:flex;justify-content:center;">
+            <span class="photo-label" style="position:absolute;top:-20px;left:0;">[inspiration]</span>
+            <div class="photo-item r2x1" style="width:60%;"><img src="images/yb-userflow1.jpg" alt="" /></div>
+          </div>
+          <div class="photo-row one" style="position:sticky;top:30vh;z-index:1;margin-top:60vh;display:flex;justify-content:center;">
+            <div class="photo-item r2x1" style="width:60%;"><img src="images/yb-userflow2.jpg" alt="" /></div>
+          </div>
+        </div>
+        <span class="photo-label" style="position:relative;z-index:2;">[screens]</span>
+        <div class="photo-row one" style="position:relative;z-index:2;display:flex;justify-content:center;">
+          <div class="photo-item r169" style="width:90%;"><img src="images/yb-screens1.jpg" alt="" /></div>
+        </div>
+        <div class="photo-row one" style="position:relative;z-index:2;display:flex;justify-content:center;">
+          <div class="photo-item r169" style="width:90%;"><img src="images/yb-screens2.jpg" alt="" /></div>
+        </div>
       </div>
-      <div class="photo-row one">
-        <div class="photo-item r2x1"><img src="images/yb-userflow2.jpg" alt="" /></div>
-      </div>
-      <span class="photo-label">[inspiration]</span>
-      <div class="photo-row one">
-        <div class="photo-item square"><img src="images/yb-inspiration.jpg" alt="" /></div>
-      </div>
-      <span class="photo-label">[screens]</span>
-      <div class="photo-row one">
-        <div class="photo-item r169"><img src="images/yb-screens1.jpg" alt="" /></div>
-      </div>
-      <div class="photo-row one">
-        <div class="photo-item r169"><img src="images/yb-screens2.jpg" alt="" /></div>
+      <span class="photo-label">[prototype]</span>
+      <div style="display:flex;gap:16px;padding:120px 0 80px;justify-content:center;align-items:center;">
+        <div style="flex:1;border-radius:63px;overflow:hidden;">
+          <video autoplay muted loop playsinline style="width:100%;max-height:72vh;display:block;object-fit:contain;">
+            <source src="images/yeezy/הקלטת מסך 2025-12-21 ב-13.18.32.mov" type="video/mp4" />
+          </video>
+        </div>
+        <div style="flex:1;border-radius:63px;overflow:hidden;">
+          <video autoplay muted loop playsinline style="width:100%;max-height:72vh;display:block;object-fit:contain;">
+            <source src="images/yeezy/הקלטת מסך 2025-12-21 ב-13.18.32 3.mov" type="video/mp4" />
+          </video>
+        </div>
+        <div style="flex:1;border-radius:63px;overflow:hidden;">
+          <video autoplay muted loop playsinline style="width:100%;max-height:72vh;display:block;object-fit:contain;">
+            <source src="images/yeezy/הקלטת מסך 2025-12-21 ב-13.18.32 2.mov" type="video/mp4" />
+          </video>
+        </div>
       </div>
       <a href="project-findash.html" class="next-project">
         <div><p class="next-label">Next Project</p><p class="next-title">Parkhunt</p></div>

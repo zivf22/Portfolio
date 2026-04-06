@@ -12,13 +12,13 @@
     :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
     html { scroll-behavior: smooth; }
     body { background: var(--white); color: var(--black); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; cursor: none; }
-    .cursor { position: fixed; width: 10px; height: 10px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
-    .cursor.hover { width: 48px; height: 48px; }
+    .cursor { position: fixed; width: 25px; height: 25px; background: white; -webkit-mask: url("images/cursor-t.png") center/contain no-repeat; mask: url("images/cursor-t.png") center/contain no-repeat; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+    .cursor.hover { width: 36px; height: 36px; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
     .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
     .header-right { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
     .split { display: grid; grid-template-columns: 1fr 2fr; margin-top: var(--header); min-height: calc(100vh - var(--header)); }
-    .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; border-right: 1px solid var(--line); padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
+    .split-left { position: sticky; top: var(--header); height: calc(100vh - var(--header)); overflow-y: auto; padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: space-between; -ms-overflow-style: none; scrollbar-width: none; }
     .split-left::-webkit-scrollbar { display: none; }
     .project-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 20px; }
     .project-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(52px, 7vw, 100px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 32px; }
@@ -34,8 +34,7 @@
     .panel-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
     .split-right { padding: 0; }
     .photo-item { overflow: hidden; display: block; }
-    .photo-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .photo-item:hover img { transform: scale(1.02); }
+    .photo-item img { width: 100%; display: block; }
     .photo-item.wide img  { aspect-ratio: 4/3; object-fit: cover; }
     .photo-item.tall img  { aspect-ratio: 2/3; object-fit: cover; }
     .photo-item.square img { aspect-ratio: 1/1; object-fit: cover; }
@@ -46,6 +45,7 @@
     .photo-item.r916 img  { aspect-ratio: 9/16; object-fit: cover; }
     .photo-item.rstrip img { aspect-ratio: 16/3; object-fit: cover; }
     .photo-row { display: grid; gap: 0; }
+    .stack > .photo-row { position: sticky; top: var(--header); }
     .photo-row.two { grid-template-columns: 1fr 1fr; }
     .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
     .photo-row.one { grid-template-columns: 1fr; }
@@ -127,42 +127,57 @@
       <div class="photo-row one">
         <div class="photo-item wide"><img src="images/hero-moodify.jpg" alt="" /></div>
       </div>
-      <span class="photo-label">[style guide]</span>
-      <div class="photo-row one">
-        <div class="photo-item rstrip"><img src="images/mo-styleguide.jpg" alt="" /></div>
-      </div>
-      <span class="photo-label">[typography]</span>
-      <div class="photo-row one">
-        <div class="photo-item rstrip"><img src="images/mo-typography.jpg" alt="" /></div>
-      </div>
-      <span class="photo-label">[palette]</span>
-      <div class="photo-row one">
-        <div class="photo-item r2x1"><img src="images/mo-palette.jpg" alt="" /></div>
-      </div>
-      <span class="photo-label">[user flow]</span>
+      <span class="photo-label">[logo]</span>
       <div class="photo-row one">
         <div class="photo-item rstrip"><img src="images/mo-userflow.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[style guide]</span>
+      <span class="photo-label">[typography]</span>
       <div class="photo-row one">
-        <div class="photo-item rstrip"><img src="images/mo-screens1.jpg" alt="" /></div>
+        <div class="photo-item" style="overflow:hidden;"><img src="images/mo-screens1.jpg" alt="" style="width:162%;margin-left:0;display:block;" /></div>
+      </div>
+      <span class="photo-label" style="padding-top:0;margin-top:-16px;">[palette]</span>
+      <div class="photo-row one">
+        <div class="photo-item rstrip"><img src="images/mo-styleguide.jpg" alt="" /></div>
       </div>
       <div class="photo-row one">
-        <div class="photo-item r2x1"><img src="images/mo-screens2.jpg" alt="" /></div>
+        <div class="photo-item rstrip"><img src="images/mo-typography.jpg" alt="" /></div>
       </div>
+      <span class="photo-label">[user flow]</span>
       <div class="photo-row one">
-        <div class="photo-item r2x1"><img src="images/mo-screens3.jpg" alt="" /></div>
+        <div class="photo-item r2x1"><img src="images/mo-palette.jpg" alt="" /></div>
       </div>
-      <div class="photo-row two">
+      <div class="stack">
+        <div class="photo-row one" style="z-index:1;">
+          <div class="photo-item r2x1"><img src="images/mo-screens2.jpg" alt="" /></div>
+        </div>
+        <div class="photo-row one" style="z-index:2;">
+          <div class="photo-item r2x1"><img src="images/mo-screens3.jpg" alt="" /></div>
+        </div>
+      </div>
+      <div class="photo-row two" style="margin-top:120px;">
         <div class="photo-item tall"><img src="images/mo-screens4.jpg" alt="" /></div>
         <div class="photo-item tall"><img src="images/mo-screens5.jpg" alt="" /></div>
       </div>
-      <span class="photo-label">[package]</span>
-      <div class="photo-row one">
-        <div class="photo-item r32"><img src="images/mo-package1.jpg" alt="" /></div>
+      <div class="stack" style="margin-top:120px;">
+        <div class="photo-row one" style="z-index:1;">
+          <div class="photo-item r32"><img src="images/mo-package1.jpg" alt="" /></div>
+        </div>
+        <div style="position:sticky;top:var(--header);z-index:2;">
+          <span class="photo-label" style="padding:0;margin-bottom:-2cm;display:block;">[package]</span>
+          <div class="photo-row two" style="width:80%;margin:0 auto;align-items:start;">
+            <div class="photo-item r916"><img src="images/mo-package2.jpg" alt="" /></div>
+            <div class="photo-item r916" style="margin-top:10px;transform:scale(1.02);transform-origin:top center;"><img src="images/mo-package3.jpg" alt="" /></div>
+          </div>
+        </div>
       </div>
-      <div class="photo-row two">
-        <div class="photo-item r916"><img src="images/mo-package2.jpg" alt="" /></div>
-        <div class="photo-item r916"><img src="images/mo-package3.jpg" alt="" /></div>
+      <span class="photo-label">[prototype]</span>
+      <div class="photo-row one" style="margin-bottom:80px;margin-top:120px;">
+        <div style="overflow:hidden;max-height:80vh;display:flex;justify-content:center;align-items:center;">
+          <video autoplay muted loop playsinline style="max-height:80vh;display:block;object-fit:contain;border-radius:52px;overflow:hidden;">
+            <source src="images/mo-screenrecording.mov" type="video/mp4" />
+          </video>
+        </div>
       </div>
       <a href="project-healthtrack.html" class="next-project">
         <div><p class="next-label">Back to First</p><p class="next-title">Yeezy Breezy</p></div>
