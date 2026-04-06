@@ -98,7 +98,7 @@
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 600;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -377,7 +377,7 @@
       justify-content: space-between;
       padding: 16px 40px;
       background: transparent;
-      z-index: 50;
+      z-index: 600;
       mix-blend-mode: difference;
     }
     footer span {
@@ -391,18 +391,41 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      header { padding: 20px 24px; }
-      .projects-label, .project-header { padding-left: 24px; padding-right: 24px; }
-      .hero-photo-row:nth-child(1),
-      .hero-photo-row:nth-child(2),
-      .hero-photo-row:nth-child(3),
-      .hero-photo-row:nth-child(4) { width: 80vw; }
-      .hero-photo-row:nth-child(3) img { aspect-ratio: 4/3; }
-      .projects-overlay { position: static; margin-top: 0; }
-      .about-left { border-right: none; padding: 48px 24px; max-width: 100%; }
-      .contact-section { flex-direction: column; align-items: flex-start; gap: 40px; padding: 64px 24px; }
+      /* Hide cursor on touch */
+      body { cursor: auto; }
+      .cursor { display: none; }
+
+      /* Header */
+      header { padding: 18px 24px; align-items: center; }
+      .header-right { flex-direction: row; align-items: center; gap: 16px; }
+      .header-right a[href^="mailto"] { display: none; }
+      #clock { display: none; }
+
+      /* Hero: photos pinned to right so menu shows on left */
+      .hero-photos { justify-content: flex-end; padding-right: 16px; }
+      .hero-photo-row[data-photo="1"] { width: 55vw; }
+      .hero-photo-row[data-photo="1"] img { aspect-ratio: 412/250; }
+      .hero-photo-row[data-photo="2"] { width: 55vw; }
+      .hero-photo-row[data-photo="2"] img { aspect-ratio: 462/268; }
+      .hero-photo-row[data-photo="3"] { width: 38vw; }
+      .hero-photo-row[data-photo="3"] img { aspect-ratio: 290/372; }
+      .hero-photo-row[data-photo="4"] { width: 55vw; }
+      .hero-photo-row[data-photo="4"] img { aspect-ratio: 412/255; }
+
+      /* Projects overlay */
+      .projects-label { padding: 16px 24px; }
+      .project-header { padding: 16px 24px; gap: 16px; }
+      .project-type { display: none; }
+
+      /* Footer */
+      footer { padding: 14px 24px; }
+      footer span:nth-child(2) { display: none; }
+
+      /* About / Contact */
+      .about-left { padding: 40px 24px; max-width: 100%; }
+      .contact-section { flex-direction: column; align-items: flex-start; gap: 40px; padding: 48px 24px; }
       .contact-right { align-items: flex-start; }
-      footer { padding: 20px 24px; }
+      .contact-heading { font-size: clamp(48px, 14vw, 80px); }
     }
   </style>
 </head>
@@ -420,7 +443,7 @@
   <!-- HEADER -->
   <header>
     <div class="header-left">
-      <h1>
+      <h1 style="cursor:none;" onclick="hideSection('info-wrapper')">
         <span class="name-font">Ziv Fishman</span><span class="portfolio-tag"> / PORTFOLIO</span>
       </h1>
     </div>
@@ -501,34 +524,29 @@
     </div>
 
 
-    <!-- ABOUT -->
-    <div id="about-wrapper" style="display:none;">
-      <div class="about-section">
-        <div class="about-left">
-          <p class="section-tag">About</p>
-          <h3 class="about-heading">I Design<br />With Intent.</h3>
-          <p class="about-body">
-            Hi, my name is Ziv I'm a third year Visual Communication student based in Holon, but originally from a small small town called Benaya. I'm a third year Visual Communication student at HIT, focused on understanding user needs and creating intuitive, aesthetic solutions that solve real problems, with a focus on UX/UI, branding, typography, concept driven design.
-          </p>
+    <!-- ABOUT + CONTACT -->
+    <div id="info-wrapper" style="display:none;position:fixed;inset:0;z-index:500;background:var(--white);overflow-y:auto;">
+      <div style="padding-top:73px;padding-bottom:140px;">
+        <div class="about-section">
+          <div class="about-left">
+            <p class="section-tag">About</p>
+            <h3 class="about-heading">I Design<br />With Intent.</h3>
+            <p class="about-body">
+              Hi, my name is Ziv I'm a third year Visual Communication student based in Holon, but originally from a small small town called Benaya. I'm a third year Visual Communication student at HIT, focused on understanding user needs and creating intuitive, aesthetic solutions that solve real problems, with a focus on UX/UI, branding, typography, concept driven design.
+            </p>
+          </div>
         </div>
-      </div>
-      <div style="display:flex;justify-content:center;padding:16px 0 40px;">
-        <button class="back-up-btn" onclick="hideSection('about-wrapper')">↑</button>
-      </div>
-    </div>
-
-    <!-- CONTACT -->
-    <div id="contact-wrapper" style="display:none;">
-      <div class="contact-section">
-        <h3 class="contact-heading">Let's<br />Work<br />Together.</h3>
-        <div class="contact-right">
-          <a href="mailto:ziv.f22@gmail.com" class="contact-link">ziv.f22@gmail.com</a>
-          <a href="#" class="contact-link">Instagram ↗</a>
-          <a href="#" class="contact-link">Download CV ↗</a>
+        <div class="contact-section">
+          <h3 class="contact-heading">Let's<br />Work<br />Together.</h3>
+          <div class="contact-right">
+            <a href="mailto:ziv.f22@gmail.com" class="contact-link">ziv.f22@gmail.com</a>
+            <a href="#" class="contact-link">Instagram ↗</a>
+            <a href="#" class="contact-link">Download CV ↗</a>
+          </div>
         </div>
-      </div>
-      <div style="display:flex;justify-content:center;padding:16px 0 40px;">
-        <button class="back-up-btn" onclick="hideSection('contact-wrapper')">↑</button>
+        <div style="display:flex;justify-content:center;padding:16px 0 40px;">
+          <button class="back-up-btn" onclick="hideSection('info-wrapper')">↑</button>
+        </div>
       </div>
     </div>
 
@@ -545,24 +563,20 @@
     // Hide section and scroll back to top
     function hideSection(id) {
       document.getElementById(id).style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // About / Contact reveal
-    document.getElementById('btn-about').addEventListener('click', e => {
-      e.preventDefault();
-      const el = document.getElementById('about-wrapper');
+    function openInfo(scrollToContact) {
+      const el = document.getElementById('info-wrapper');
       el.style.display = 'block';
-      document.getElementById('contact-wrapper').style.display = 'none';
-      el.scrollIntoView({ behavior: 'smooth' });
-    });
-    document.getElementById('btn-contact').addEventListener('click', e => {
-      e.preventDefault();
-      const el = document.getElementById('contact-wrapper');
-      el.style.display = 'block';
-      document.getElementById('about-wrapper').style.display = 'none';
-      el.scrollIntoView({ behavior: 'smooth' });
-    });
+      if (scrollToContact) {
+        el.querySelector('.contact-section').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        el.scrollTop = 0;
+      }
+    }
+    document.getElementById('btn-about').addEventListener('click', e => { e.preventDefault(); openInfo(false); });
+    document.getElementById('btn-contact').addEventListener('click', e => { e.preventDefault(); openInfo(true); });
 
     // Clock
     function updateClock() {
@@ -701,6 +715,20 @@
       scrollLocked = true;
       goTo(vIdx + dir, true);
     }, { passive: false });
+
+    // Touch swipe for mobile
+    let touchStartY = 0;
+    document.querySelector('.hero-section').addEventListener('touchstart', e => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    document.querySelector('.hero-section').addEventListener('touchend', e => {
+      if (scrollLocked) return;
+      const diff = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 40) {
+        scrollLocked = true;
+        goTo(vIdx + (diff > 0 ? 1 : -1), true);
+      }
+    }, { passive: true });
 
     // Click photo
     all.forEach((photo, vi) => {
