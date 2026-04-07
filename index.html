@@ -396,36 +396,37 @@
       .cursor { display: none; }
 
       /* Header */
-      header { padding: 18px 24px; align-items: center; }
-      .header-right { flex-direction: row; align-items: center; gap: 16px; }
+      header { padding: 10px 16px; align-items: center; }
+      .header-left .name-font { font-size: 13px; }
+      .header-left .portfolio-tag { font-size: 9px; }
+      .header-right { flex-direction: row; align-items: center; gap: 12px; }
+      .header-right a, .header-right button { font-size: 9px; }
       .header-right a[href^="mailto"] { display: none; }
       #clock { display: none; }
 
-      /* Hero: photos pinned to right so menu shows on left */
-      .hero-photos { justify-content: flex-end; padding-right: 16px; }
-      .hero-photo-row[data-photo="1"] { width: 55vw; }
-      .hero-photo-row[data-photo="1"] img { aspect-ratio: 412/250; }
-      .hero-photo-row[data-photo="2"] { width: 55vw; }
-      .hero-photo-row[data-photo="2"] img { aspect-ratio: 462/268; }
-      .hero-photo-row[data-photo="3"] { width: 38vw; }
-      .hero-photo-row[data-photo="3"] img { aspect-ratio: 290/372; }
-      .hero-photo-row[data-photo="4"] { width: 55vw; }
-      .hero-photo-row[data-photo="4"] img { aspect-ratio: 412/255; }
-
-      /* Projects overlay */
-      .projects-label { padding: 16px 24px; }
-      .project-header { padding: 16px 24px; gap: 16px; }
-      .project-type { display: none; }
-
       /* Footer */
-      footer { padding: 14px 24px; }
+      footer { padding: 8px 16px; }
+      footer span { font-size: 9px; }
       footer span:nth-child(2) { display: none; }
 
+      /* Hero: vertical carousel, bigger photos */
+      .hero-photo-row[data-photo="1"] { width: 72vw; }
+      .hero-photo-row[data-photo="2"] { width: 72vw; }
+      .hero-photo-row[data-photo="3"] { width: 58vw; }
+      .hero-photo-row[data-photo="4"] { width: 72vw; }
+
+      /* Hide projects overlay on mobile */
+      .projects-overlay { display: none; }
+
       /* About / Contact */
-      .about-left { padding: 40px 24px; max-width: 100%; }
-      .contact-section { flex-direction: column; align-items: flex-start; gap: 40px; padding: 48px 24px; }
+      .about-left { padding: 40px 20vw; max-width: 100%; }
+      .contact-section { flex-direction: column; align-items: flex-start; gap: 24px; padding: 48px 20vw; }
       .contact-right { align-items: flex-start; }
-      .contact-heading { font-size: clamp(48px, 14vw, 80px); }
+      .section-tag { font-size: 8px; margin-bottom: 20px; }
+      .about-heading { font-size: clamp(24px, 7vw, 40px); margin-bottom: 16px; }
+      .about-body { font-size: 8px; max-width: 60vw; }
+      .contact-heading { font-size: clamp(28px, 10vw, 48px); }
+      .contact-link { font-size: 9px; }
     }
   </style>
 </head>
@@ -525,7 +526,7 @@
 
 
     <!-- ABOUT + CONTACT -->
-    <div id="info-wrapper" style="display:none;position:fixed;inset:0;z-index:500;background:var(--white);overflow-y:auto;">
+    <div id="info-wrapper" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(255,255,255,0.85);overflow-y:auto;">
       <div style="padding-top:73px;padding-bottom:140px;">
         <div class="about-section">
           <div class="about-left">
@@ -543,9 +544,6 @@
             <a href="#" class="contact-link">Instagram ↗</a>
             <a href="#" class="contact-link">Download CV ↗</a>
           </div>
-        </div>
-        <div style="display:flex;justify-content:center;padding:16px 0 40px;">
-          <button class="back-up-btn" onclick="hideSection('info-wrapper')">↑</button>
         </div>
       </div>
     </div>
@@ -575,6 +573,10 @@
         el.scrollTop = 0;
       }
     }
+    document.getElementById('info-wrapper').addEventListener('click', e => {
+      if (e.target.tagName === 'A' || e.target.closest('a')) return;
+      hideSection('info-wrapper');
+    });
     document.getElementById('btn-about').addEventListener('click', e => { e.preventDefault(); openInfo(false); });
     document.getElementById('btn-contact').addEventListener('click', e => { e.preventDefault(); openInfo(true); });
 
@@ -659,14 +661,14 @@
     function goTo(vi, animate) {
       vIdx = vi;
       setActive(vi % REAL);
+      const val = translateFor(vi);
+      const transform = `translateY(${val}px)`;
       if (animate) {
         track.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1)';
-        requestAnimationFrame(() => {
-          track.style.transform = `translateY(${translateFor(vi)}px)`;
-        });
+        requestAnimationFrame(() => { track.style.transform = transform; });
       } else {
         track.style.transition = 'none';
-        track.style.transform = `translateY(${translateFor(vi)}px)`;
+        track.style.transform = transform;
       }
     }
 
@@ -693,6 +695,9 @@
 
     // Init — no animation
     goTo(REAL, false);
+
+    // Recalculate on resize (e.g. DevTools device toggle)
+    window.addEventListener('resize', () => goTo(vIdx, false));
 
     // After transition: silently snap back to original set if in a clone
     track.addEventListener('transitionend', () => {

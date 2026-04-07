@@ -65,6 +65,14 @@
       .split-left { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 40px 24px; }
       header, .next-project, footer { padding-left: 24px; padding-right: 24px; }
     }
+    @media (max-width: 768px) {
+      .photo-label { font-size: 8px !important; }
+      .logo-text { font-size: 14px !important; margin-top: 0.5cm; }
+      .inspiration-label { top: calc(-20px - 1cm) !important; }
+      .screens-label { margin-top: 2cm; }
+      .video-wrap video { max-height: 64.8vh; }
+      .video-row { padding-left: 16px !important; padding-right: 16px !important; }
+    }
   </style>
 </head>
 <body>
@@ -127,7 +135,7 @@
       </div>
       <span class="photo-label">[logo]</span>
       <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 0;">
-        <p style="font-family:'Instrument Sans',sans-serif;font-size:48px;font-weight:400;color:#000;white-space:nowrap;flex:1;text-align:center;">yeezy breezy</p>
+        <p class="logo-text" style="font-family:'Instrument Sans',sans-serif;font-size:48px;font-weight:400;color:#000;white-space:nowrap;flex:1;text-align:center;">yeezy breezy</p>
         <div style="flex:1;display:flex;justify-content:center;transform:translate(-1cm,10px);"><img src="images/yb-logo.jpg" alt="" style="width:100%;display:block;" /></div>
       </div>
       <span class="photo-label">[style guide]</span>
@@ -146,14 +154,14 @@
         </div>
         <div style="position:relative;z-index:2;">
           <div class="photo-row one" style="position:sticky;top:30vh;display:flex;justify-content:center;">
-            <span class="photo-label" style="position:absolute;top:-20px;left:0;">[inspiration]</span>
+            <span class="photo-label inspiration-label" style="position:absolute;top:-20px;left:0;">[inspiration]</span>
             <div class="photo-item r2x1" style="width:60%;"><img src="images/yb-userflow1.jpg" alt="" /></div>
           </div>
           <div class="photo-row one" style="position:sticky;top:30vh;z-index:1;margin-top:60vh;display:flex;justify-content:center;">
             <div class="photo-item r2x1" style="width:60%;"><img src="images/yb-userflow2.jpg" alt="" /></div>
           </div>
         </div>
-        <span class="photo-label" style="position:relative;z-index:2;">[screens]</span>
+        <span class="photo-label screens-label" style="position:relative;z-index:2;">[screens]</span>
         <div class="photo-row one" style="position:relative;z-index:2;display:flex;justify-content:center;">
           <div class="photo-item r169" style="width:90%;"><img src="images/yb-screens1.jpg" alt="" /></div>
         </div>
@@ -162,7 +170,7 @@
         </div>
       </div>
       <span class="photo-label">[prototype]</span>
-      <div style="display:flex;gap:16px;padding:120px 0 80px;justify-content:center;align-items:center;">
+      <div class="video-row" style="display:flex;gap:16px;padding:120px 0 80px;justify-content:center;align-items:center;">
         <div class="video-wrap">
           <video autoplay muted loop playsinline style="width:100%;max-height:72vh;display:block;object-fit:contain;">
             <source src="images/yeezy/הקלטת מסך 2025-12-21 ב-13.18.32.mov" type="video/mp4" />

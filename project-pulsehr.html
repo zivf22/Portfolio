@@ -61,6 +61,12 @@
       .split-left { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 40px 24px; }
       header, .next-project, footer { padding-left: 24px; padding-right: 24px; }
     }
+    @media (max-width: 768px) {
+      .photo-label { font-size: 8px !important; }
+      .package-label { margin-top: -1cm !important; }
+      .package-photos { margin-top: 1cm !important; }
+      .package-sticky { margin-top: 2cm !important; }
+    }
   </style>
 </head>
 <body>
@@ -163,9 +169,9 @@
         <div class="photo-row one" style="z-index:1;">
           <div class="photo-item r32"><img src="images/mo-package1.jpg" alt="" /></div>
         </div>
-        <div style="position:sticky;top:var(--header);z-index:2;">
-          <span class="photo-label" style="padding:0;margin-bottom:-2cm;display:block;">[package]</span>
-          <div class="photo-row two" style="width:80%;margin:0 auto;align-items:start;">
+        <div class="package-sticky" style="position:sticky;top:var(--header);z-index:2;">
+          <span class="photo-label package-label" style="padding:0;margin-bottom:-2cm;display:block;">[package]</span>
+          <div class="photo-row two package-photos" style="width:80%;margin:0 auto;align-items:start;">
             <div class="photo-item r916"><img src="images/mo-package2.jpg" alt="" /></div>
             <div class="photo-item r916" style="margin-top:10px;transform:scale(1.02);transform-origin:top center;"><img src="images/mo-package3.jpg" alt="" /></div>
           </div>
