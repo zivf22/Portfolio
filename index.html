@@ -390,6 +390,40 @@
       mix-blend-mode: difference;
     }
 
+    /* ── MOBILE OPEN HINT ── */
+    .mobile-open-hint {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .mobile-open-hint {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 50;
+        pointer-events: none;
+        mix-blend-mode: difference;
+      }
+      .mobile-open-hint .hint-square {
+        width: 6px;
+        height: 6px;
+        background: #fff;
+        flex-shrink: 0;
+      }
+      .mobile-open-hint .hint-text {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #fff;
+        white-space: nowrap;
+      }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       /* Hide cursor on touch */
@@ -480,6 +514,12 @@
         </div>
       </div>
 
+
+      <!-- Mobile open hint -->
+      <div class="mobile-open-hint" id="mobileHint">
+        <div class="hint-square"></div>
+        <span class="hint-text">Open Project</span>
+      </div>
 
       <!-- Project list overlaid transparently on photos -->
       <div class="projects-overlay">
@@ -736,6 +776,17 @@
         goTo(vIdx + (diff > 0 ? 1 : -1), true);
       }
     }, { passive: true });
+
+    // Mobile hint tap — opens active project
+    const mobileHint = document.getElementById('mobileHint');
+    if (mobileHint) {
+      mobileHint.style.pointerEvents = 'auto';
+      mobileHint.addEventListener('click', () => {
+        const ri = vIdx % REAL;
+        const activePhoto = all.find((_, vi) => vi % REAL === ri && vi >= REAL && vi < REAL * 2);
+        if (activePhoto) navigateTo(activePhoto, HREFS[ri]);
+      });
+    }
 
     // Click photo
     all.forEach((photo, vi) => {
