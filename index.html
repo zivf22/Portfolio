@@ -179,8 +179,9 @@
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
 
     .hero-photo-row {
@@ -664,7 +665,7 @@
       const val = translateFor(vi);
       const transform = `translateY(${val}px)`;
       if (animate) {
-        track.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1)';
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94)';
         requestAnimationFrame(() => { track.style.transform = transform; });
       } else {
         track.style.transition = 'none';
@@ -706,7 +707,7 @@
       if (vIdx < REAL || vIdx >= REAL * 2) {
         goTo(REAL + ri, false);
       }
-      setTimeout(() => { scrollLocked = false; }, 100);
+      setTimeout(() => { scrollLocked = false; }, 60);
     });
 
     // Scroll
