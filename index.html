@@ -706,7 +706,7 @@
       if (vIdx < REAL || vIdx >= REAL * 2) {
         goTo(REAL + ri, false);
       }
-      setTimeout(() => { scrollLocked = false; }, 200);
+      setTimeout(() => { scrollLocked = false; }, 100);
     });
 
     // Scroll
@@ -729,7 +729,7 @@
     document.querySelector('.hero-section').addEventListener('touchend', e => {
       if (scrollLocked) return;
       const diff = touchStartY - e.changedTouches[0].clientY;
-      if (Math.abs(diff) > 40) {
+      if (Math.abs(diff) > 20) {
         scrollLocked = true;
         goTo(vIdx + (diff > 0 ? 1 : -1), true);
       }
