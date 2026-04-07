@@ -188,7 +188,6 @@
       flex-shrink: 0;
       overflow: hidden;
     }
-    .mobile-scroll { display: none; }
 
     .hero-photo-row img {
       width: 100%;
@@ -411,40 +410,14 @@
       footer span { font-size: 9px; }
       footer span:nth-child(2) { display: none; }
 
-      /* Hide desktop carousel on mobile */
-      .hero-photos { display: none; }
-      .projects-overlay { display: none; }
+      /* Hero: vertical carousel, bigger photos */
+      .hero-photo-row[data-photo="1"] { width: 72vw; }
+      .hero-photo-row[data-photo="2"] { width: 72vw; }
+      .hero-photo-row[data-photo="3"] { width: 58vw; }
+      .hero-photo-row[data-photo="4"] { width: 72vw; }
 
-      /* Mobile scroll list */
-      .mobile-scroll {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 20px 0 100px;
-        overflow-y: auto;
-        height: 100%;
-        -webkit-overflow-scrolling: touch;
-      }
-      .mobile-scroll a {
-        display: block;
-        width: 80vw;
-        text-decoration: none;
-      }
-      .mobile-scroll a img {
-        width: 100%;
-        display: block;
-        border-radius: 12px;
-      }
-      .mobile-scroll .mobile-label {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 9px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--black);
-        margin-top: 8px;
-        display: block;
-      }
+      /* Hide projects overlay on mobile */
+      .projects-overlay { display: none; }
 
       /* About / Contact */
       .about-left { padding: 40px 20vw; max-width: 100%; }
@@ -507,25 +480,6 @@
         </div>
       </div>
 
-      <!-- Mobile-only scrollable list -->
-      <div class="mobile-scroll">
-        <a href="project-healthtrack.html">
-          <img src="images/hero-yeezy.jpg" alt="Yeezy Breezy" />
-          <span class="mobile-label">001 — Yeezy Breezy</span>
-        </a>
-        <a href="project-findash.html">
-          <img src="images/hero-parkhunt.jpg" alt="Parkhunt" />
-          <span class="mobile-label">002 — Parkhunt</span>
-        </a>
-        <a href="project-mangomarket.html">
-          <img src="images/hero-yesismore.jpg" alt="Yes Is More" />
-          <span class="mobile-label">003 — Yes Is More</span>
-        </a>
-        <a href="project-pulsehr.html">
-          <img src="images/hero-moodify.jpg" alt="Moodify" />
-          <span class="mobile-label">004 — Moodify</span>
-        </a>
-      </div>
 
       <!-- Project list overlaid transparently on photos -->
       <div class="projects-overlay">
