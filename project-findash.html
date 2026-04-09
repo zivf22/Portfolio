@@ -16,7 +16,7 @@
     :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
     html { scroll-behavior: smooth; }
     body { background: var(--white); color: var(--black); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; cursor: none; }
-    .cursor { position: fixed; width: 25px; height: 25px; background: white; -webkit-mask: url("images/cursor-t.png") center/contain no-repeat; mask: url("images/cursor-t.png") center/contain no-repeat; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+    .cursor { position: fixed; width: 10px; height: 10px; background: white; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
     .cursor.hover { width: 36px; height: 36px; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
     .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
@@ -29,7 +29,7 @@
     .project-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); margin-bottom: 40px; }
     .info-block { margin-bottom: 28px; }
     .info-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
-    .info-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); }
+    .info-text { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); text-wrap: pretty; }
     .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
     .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--line); padding: 4px 10px; }
     .divider { height: 1px; background: var(--line); margin: 28px 0; }
@@ -146,21 +146,18 @@
       </div>
       <span class="photo-label">[logo]</span>
       <div class="logo-block" style="padding:80px 0 32px;text-align:center;">
-        <p class="logo-park" style="font-family:'Oleo Script',cursive;font-size:64px;letter-spacing:1px;display:inline;">Park</p><p class="logo-hunt" style="font-family:'Righteous',sans-serif;font-size:48px;display:inline;">Hunt</p>
+        <img src="images/logo parkhunt.png" alt="Parkhunt Logo" style="width:100%;display:block;" />
       </div>
       <div style="height:80px;"></div>
       <span class="photo-label">[style guide]</span>
       <div style="height:24px;"></div>
-      <div class="photo-row two">
-        <div class="photo-item r53"><img src="images/ph-styleguide1.jpg" alt="" /></div>
-        <div class="photo-item r53"><img src="images/ph-styleguide2.jpg" alt="" /></div>
-      </div>
-      <div style="height:80px;"></div>
-      <span class="photo-label">[user flow]</span>
       <div class="photo-row one">
-        <div class="photo-item r94" style="cursor:zoom-in;" id="userflow-thumb"><img src="images/ph-userflow.jpg" alt="" /></div>
+        <div class="photo-item auto"><img src="images/palette parkhunt.png" alt="" /></div>
       </div>
-      <div style="height:80px;"></div>
+      <div class="photo-row one">
+        <div class="photo-item auto"><img src="images/font parkhunt.png" alt="" /></div>
+      </div>
+      <div style="height:160px;"></div>
       <div class="stack">
         <div style="position:sticky;top:var(--header);">
           <span class="photo-label" style="background:var(--white);position:relative;z-index:100;">[research]</span>
@@ -182,71 +179,27 @@
         </div>
       </div>
       <div style="height:80px;"></div>
-      <div class="insights-block" style="padding:40px 40px 0;font-family:'OE Meoded Pashut Pro',monospace;font-size:13px;letter-spacing:0.5px;color:#000;">
-        <p style="font-weight:700;margin-bottom:20px;">INSIGHTS FROM THE RESEARCH I CONDUCTED</p>
-        <ul style="font-weight:200;list-style:disc;padding-left:1.2em;display:flex;flex-direction:column;gap:20px;">
-          <li>MOST PEOPLE HAVE HAD THE EXPERIENCE OF HAVING THE FREE PARKING SPACE THEY FOUND TAKEN BEFORE THEY COULD ARRIVE.</li>
-          <li>MOST PEOPLE WOULD GIVE UP DRIVING JUST TO AVOID HAVING TO DEAL WITH PARKING.</li>
-          <li>MOST PEOPLE ARE LATE TO PLACES BECAUSE THEY COULDN'T FIND A FREE PARKING SPACE.</li>
-          <li>MORE THAN HALF OF THE PEOPLE WOULD PREFER TO PARK WHERE IT IS CHEAPEST.</li>
-          <li>MOST PEOPLE PARK IN A PARKNG LOT AT LEAST ONCE A WEEK.</li>
-        </ul>
+      <div class="insights-block" style="padding:40px 40px 0;">
+        <img src="images/insights.png" alt="Insights" style="width:100%;display:block;" />
       </div>
-      <div class="insights-persona-gap" style="height:160px;"></div>
+      <div class="insights-persona-gap" style="height:80px;"></div>
       <span class="photo-label">[persona]</span>
-      <div style="height:40px;"></div>
-      <div class="persona-grid" style="display:grid;grid-template-columns:1fr 2fr;gap:40px;padding:24px 40px;font-family:'OE Meoded Pashut Pro',monospace;font-size:13px;letter-spacing:0.5px;color:#000;">
-        <div style="display:flex;flex-direction:column;">
-          <img src="images/ph-persona.jpg" alt="" style="width:100%;display:block;" />
-          <div style="margin-top:auto;padding-top:16px;">
-          <p style="font-weight:700;margin-bottom:8px;">MIRI BERGER</p>
-          <p style="font-weight:200;line-height:1.83;"><strong>AGE:</strong> 53</p>
-          <p style="font-weight:200;line-height:1.83;"><strong>PROFESSION:</strong> WEBSITE CONTENT WRITER</p>
-          <p style="font-weight:200;line-height:1.83;"><strong>EDUCATION:</strong> BACHELOR'S DEGREE IN BUSINESS ADMINISTRATION AND MARKETING</p>
-          <p style="font-weight:200;line-height:1.83;"><strong>MARITAL STATUS:</strong> DIVORCED + 2</p>
-          <p style="font-weight:200;line-height:1.83;"><strong>CITY OF RESIDENCE:</strong> TEL AVIV</p>
-          <p style="font-weight:200;line-height:1.83;"><strong>ARCHETYPE:</strong> SHORT FUSE</p>
-          </div>
-        </div>
-        <div>
-          <p class="persona-bio" style="font-weight:200;line-height:1.76;margin-bottom:24px;max-width:75%;">MIRI IS A FREELANCER, BUT SHE DRIVES HER CAR ALL THE TIME. THEY ALWAYS SAY SHE LIVES IN IT. SHE RUNS ERRANDS ALL DAY AND ENTERS PARKING LOTS REGULARLY. SHE IS IMPATIENT, SO SHE IS LOOKING TO REDUCE THE TIME SHE SPENDS SEARCHING FOR PARKING. SHE WANTS TO KNOW WHICH PARKING LOTS HAVE ELECTRIC VEHICLE CHARGING. SHE WANTS TO KNOW IN ADVANCE IF THE PARKING LOT IS FULL AND CLOSE TO THE DESTINATION, BUT THE PRICE DOESN'T MATTER TO HER.</p>
-          <p style="font-weight:700;margin-bottom:8px;">GOALS</p>
-          <ul style="font-weight:200;list-style:disc;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
-            <li style="line-height:1.83;">REDUCE THE TIME SPENT SEARCHING FOR PARKING IN A PARKING LOT.</li>
-            <li style="line-height:1.83;">SAVE NERVES AND AVOID FRUSTRATION (AND PARKING TICKETS).</li>
-            <li style="line-height:1.83;">KNOW WHICH PARKING LOTS OFFER ELECTRIC VEHICLE CHARGING.</li>
-            <li style="line-height:1.83;">AVOID ENTERING FULL PARKING LOTS.</li>
-          </ul>
-          <div class="traits-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px 0;padding-top:16px;align-items:center;">
-            <p class="trait-label" style="font-weight:200;">GOOD TECHNOLOGICAL SKILLS</p>
-            <div class="trait-bar" style="position:relative;height:0.5px;background:#000;margin:0 8px;transform:translateX(-0.5cm);"><div style="position:absolute;top:-3px;left:12%;width:6px;height:6px;background:#000;border-radius:50%;"></div></div>
-            <p class="trait-label" style="font-weight:200;">LACKING TECHNOLOGICAL SKILLS</p>
-
-            <p class="trait-label" style="font-weight:200;">PATIENT</p>
-            <div class="trait-bar" style="position:relative;height:0.5px;background:#000;margin:0 8px;transform:translateX(-0.5cm);"><div style="position:absolute;top:-3px;left:91%;width:6px;height:6px;background:#000;border-radius:50%;"></div></div>
-            <p class="trait-label" style="font-weight:200;">IMPATIENT</p>
-
-            <p class="trait-label" style="font-weight:200;">FINANCIALLY RESPONSIBLE</p>
-            <div class="trait-bar" style="position:relative;height:0.5px;background:#000;margin:0 8px;transform:translateX(-0.5cm);"><div style="position:absolute;top:-3px;left:21%;width:6px;height:6px;background:#000;border-radius:50%;"></div></div>
-            <p class="trait-label" style="font-weight:200;">FINANCIALLY IRRESPONSIBLE</p>
-
-            <p class="trait-label" style="font-weight:200;">DIRECTED</p>
-            <div class="trait-bar" style="position:relative;height:0.5px;background:#000;margin:0 8px;transform:translateX(-0.5cm);"><div style="position:absolute;top:-3px;left:81%;width:6px;height:6px;background:#000;border-radius:50%;"></div></div>
-            <p class="trait-label" style="font-weight:200;">EXTROVERTED</p>
-
-            <p class="trait-label" style="font-weight:200;">ORGANIZED AND PUNCTUAL</p>
-            <div class="trait-bar" style="position:relative;height:0.5px;background:#000;margin:0 8px;transform:translateX(-0.5cm);"><div style="position:absolute;top:-3px;left:73%;width:6px;height:6px;background:#000;border-radius:50%;"></div></div>
-            <p class="trait-label" style="font-weight:200;">DISORGANIZED AND LATE</p>
-          </div>
-        </div>
+      <div class="photo-row one">
+        <img src="images/persona.png" alt="Persona" style="width:100%;display:block;" />
       </div>
-      <div class="persona-screens-gap" style="height:160px;"></div>
+      <div style="height:80px;"></div>
+      <span class="photo-label">[user flow]</span>
+      <div class="photo-row one">
+        <div class="photo-item r94" style="cursor:zoom-in;" id="userflow-thumb"><img src="images/ph-userflow.jpg" alt="" /></div>
+      </div>
+      <div class="persona-screens-gap" style="height:80px;"></div>
       <span class="photo-label">[screens]</span>
       <div class="photo-row one">
         <div class="photo-item r125"><img src="images/ph-screens.jpg" alt="" /></div>
       </div>
+      <div style="height:80px;"></div>
       <span class="photo-label">[prototype]</span>
-      <div class="photo-row one" style="margin-bottom:80px;margin-top:120px;">
+      <div class="photo-row one" style="margin-bottom:80px;">
         <div style="overflow:hidden;max-height:80vh;display:flex;justify-content:center;align-items:center;">
           <video autoplay muted loop playsinline class="proto-video" style="max-height:80vh;display:block;object-fit:contain;border-radius:52px;overflow:hidden;">
             <source src="images/הקלטת מסך 2026-04-04 ב-20.04.56.mov" type="video/mp4" />
@@ -340,6 +293,9 @@
     });
 
     const cursor = document.getElementById('cursor');
+    document.querySelectorAll('.info-text, .project-tagline').forEach(el => {
+      el.innerHTML = el.innerHTML.replace(/\s+(\S+)\s*$/, '\u00A0$1');
+    });
     document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
     document.querySelectorAll("a").forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));

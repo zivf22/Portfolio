@@ -12,7 +12,7 @@
     :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
     html { scroll-behavior: smooth; }
     body { background: var(--white); color: var(--black); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; cursor: none; }
-    .cursor { position: fixed; width: 25px; height: 25px; background: white; -webkit-mask: url("images/cursor-t.png") center/contain no-repeat; mask: url("images/cursor-t.png") center/contain no-repeat; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+    .cursor { position: fixed; width: 10px; height: 10px; background: white; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
     .cursor.hover { width: 36px; height: 36px; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
     .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
@@ -25,7 +25,7 @@
     .project-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); margin-bottom: 40px; }
     .info-block { margin-bottom: 28px; }
     .info-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
-    .info-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); }
+    .info-text { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); text-wrap: pretty; }
     .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
     .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--line); padding: 4px 10px; }
     .divider { height: 1px; background: var(--line); margin: 28px 0; }
@@ -137,6 +137,7 @@
       <div class="photo-row one">
         <div class="photo-item rstrip"><img src="images/mo-userflow.jpg" alt="" /></div>
       </div>
+      <div style="height:80px;"></div>
       <span class="photo-label">[style guide]</span>
       <span class="photo-label">[typography]</span>
       <div class="photo-row one">
@@ -149,15 +150,17 @@
       <div class="photo-row one">
         <div class="photo-item rstrip"><img src="images/mo-typography.jpg" alt="" /></div>
       </div>
+      <div style="height:80px;"></div>
       <span class="photo-label">[user flow]</span>
       <div class="photo-row one">
         <div class="photo-item r2x1"><img src="images/mo-palette.jpg" alt="" /></div>
       </div>
+      <div style="height:80px;"></div>
       <div class="stack">
         <div class="photo-row one" style="z-index:1;">
           <div class="photo-item r2x1"><img src="images/mo-screens2.jpg" alt="" /></div>
         </div>
-        <div class="photo-row one" style="z-index:2;">
+        <div class="photo-row one" style="z-index:2;margin-top:80px;">
           <div class="photo-item r2x1"><img src="images/mo-screens3.jpg" alt="" /></div>
         </div>
       </div>
@@ -251,6 +254,9 @@
     })();
 
     const cursor = document.getElementById('cursor');
+    document.querySelectorAll('.info-text, .project-tagline').forEach(el => {
+      el.innerHTML = el.innerHTML.replace(/\s+(\S+)\s*$/, '\u00A0$1');
+    });
     document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
     document.querySelectorAll("a").forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
