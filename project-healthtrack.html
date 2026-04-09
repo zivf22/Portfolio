@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yeezy Breezy — Ziv Fishman</title>
+  <title>Yeezy Breezy - Ziv Fishman</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@100;200;300;400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
@@ -13,7 +13,7 @@
     :root { --black: #000; --white: #fff; --gray: #888; --line: rgba(0,0,0,0.15); --header: 73px; }
     html { scroll-behavior: smooth; }
     body { background: var(--white); color: var(--black); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; cursor: none; }
-    .cursor { position: fixed; width: 25px; height: 25px; background: white; -webkit-mask: url("images/cursor-t.png") center/contain no-repeat; mask: url("images/cursor-t.png") center/contain no-repeat; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+    .cursor { position: fixed; width: 10px; height: 10px; background: white; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
     .cursor.hover { width: 36px; height: 36px; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; background: var(--white); border-bottom: 1px solid var(--line); }
     .header-left a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); text-decoration: none; }
@@ -26,7 +26,7 @@
     .project-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); margin-bottom: 40px; }
     .info-block { margin-bottom: 28px; }
     .info-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
-    .info-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); }
+    .info-text { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 200; line-height: 1.9; letter-spacing: -0.04em; word-spacing: -0.15em; color: var(--black); text-wrap: pretty; }
     .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
     .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--line); padding: 4px 10px; }
     .divider { height: 1px; background: var(--line); margin: 28px 0; }
@@ -98,7 +98,7 @@
         </div>
         <div class="info-block">
           <p class="info-label">How is this reflected in the app?</p>
-          <p class="info-text">In the app, you can only see the weather for the current day. The next day will only be revealed at midnight. There is an element of surprise — you never know what will come, like with Kanye. In addition, I added a feature of the reliability percentage of the weather — is it stable or may change at any moment?<br /><br />There are two modes in the app: on the one hand, calm, pleasant to the eyes, clean colors; and the second mode is mania. The use of contrasting colors creates a feeling of discomfort in the user and the "annoying" color change as the day progresses — the change becomes more frequent and cannot be interrupted, like with Kanye who does not control his moods.<br /><br />For the design itself, I chose to draw inspiration from Kanye's design side, which, unlike his character, is very clean and minimalist.</p>
+          <p class="info-text">In the app, you can only see the weather for the current day. The next day will only be revealed at midnight. There is an element of surprise - you never know what will come, like with Kanye. In addition, I added a feature of the reliability percentage of the weather - is it stable or may change at any moment?<br /><br />There are two modes in the app: on the one hand, calm, pleasant to the eyes, clean colors; and the second mode is mania. The use of contrasting colors creates a feeling of discomfort in the user and the "annoying" color change as the day progresses - the change becomes more frequent and cannot be interrupted, like with Kanye who does not control his moods.<br /><br />For the design itself, I chose to draw inspiration from Kanye's design side, which, unlike his character, is very clean and minimalist.</p>
         </div>
         <div class="divider"></div>
         <div class="meta-grid">
@@ -131,21 +131,32 @@
     </div>
     <div class="split-right">
       <div class="photo-row one">
-        <div class="photo-item wide"><img src="images/hero-yeezy.jpg" alt="" /></div>
+        <div class="photo-item wide"><img src="images/ss.png" alt="" /></div>
       </div>
       <span class="photo-label">[logo]</span>
       <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 0;">
         <p class="logo-text" style="font-family:'Instrument Sans',sans-serif;font-size:48px;font-weight:400;color:#000;white-space:nowrap;flex:1;text-align:center;">yeezy breezy</p>
         <div style="flex:1;display:flex;justify-content:center;transform:translate(-1cm,10px);"><img src="images/yb-logo.jpg" alt="" style="width:100%;display:block;" /></div>
       </div>
+      <div style="height:80px;"></div>
       <span class="photo-label">[style guide]</span>
       <div class="photo-row one">
-        <div class="photo-item r169"><img src="images/yb-styleguide.jpg" alt="" /></div>
+        <div class="photo-item auto"><img src="images/Frame 134.png" alt="" /></div>
       </div>
+      <div class="photo-row one">
+        <div class="photo-item auto"><img src="images/Frame 194.png" alt="" /></div>
+      </div>
+      <div style="height:80px;"></div>
       <span class="photo-label">[user flow]</span>
       <div class="photo-row one">
         <div class="photo-item r2x1"><img src="images/yb-userflow-diagram.jpg" alt="" /></div>
       </div>
+      <div style="height:80px;"></div>
+      <span class="photo-label">[wireframe]</span>
+      <div class="photo-row one">
+        <div class="photo-item auto"><img src="images/wireframe.png" alt="" /></div>
+      </div>
+      <div style="height:80px;"></div>
       <div style="position:relative;">
         <div style="position:sticky;top:var(--header);z-index:1;">
           <div class="photo-row one">
@@ -153,6 +164,10 @@
           </div>
         </div>
         <div style="position:relative;z-index:2;">
+          <div class="photo-row one" style="display:flex;justify-content:center;">
+            <div class="photo-item auto" style="width:90%;background:transparent;"><img src="images/Frame 195.png" alt="" style="background:transparent;" /></div>
+          </div>
+          <div style="height:120px;"></div>
           <div class="photo-row one" style="position:sticky;top:30vh;display:flex;justify-content:center;">
             <span class="photo-label inspiration-label" style="position:absolute;top:-20px;left:0;">[inspiration]</span>
             <div class="photo-item r2x1" style="width:60%;"><img src="images/yb-userflow1.jpg" alt="" /></div>
@@ -161,6 +176,7 @@
             <div class="photo-item r2x1" style="width:60%;"><img src="images/yb-userflow2.jpg" alt="" /></div>
           </div>
         </div>
+        <div style="height:80px;position:relative;z-index:2;"></div>
         <span class="photo-label screens-label" style="position:relative;z-index:2;">[screens]</span>
         <div class="photo-row one" style="position:relative;z-index:2;display:flex;justify-content:center;">
           <div class="photo-item r169" style="width:90%;"><img src="images/yb-screens1.jpg" alt="" /></div>
@@ -251,6 +267,11 @@
         });
       }));
     })();
+
+    // Prevent orphans: glue last 2 words together
+    document.querySelectorAll('.info-text, .project-tagline').forEach(el => {
+      el.innerHTML = el.innerHTML.replace(/\s+(\S+)\s*$/, '\u00A0$1');
+    });
 
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });

@@ -64,17 +64,15 @@
     /* ── CUSTOM CURSOR ── */
     .cursor {
       position: fixed;
-      width: 25px; height: 25px;
+      width: 10px; height: 10px;
       background: white;
-      -webkit-mask: url('images/cursor-t.png') center/contain no-repeat;
-      mask: url('images/cursor-t.png') center/contain no-repeat;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
       transition: width 0.3s, height 0.3s;
       mix-blend-mode: difference;
     }
-    .cursor.hover { width: 36px; height: 36px; }
+    .cursor.hover { width: 18px; height: 18px; }
     .cursor.open-project {
       width: auto; height: auto;
       -webkit-mask: none;
@@ -197,7 +195,7 @@
 
     /* Original Figma sizes — keyed to data-photo so clones inherit them */
     .hero-photo-row[data-photo="1"] { width: 27.25vw; }
-    .hero-photo-row[data-photo="1"] img { aspect-ratio: 412/250; }
+    .hero-photo-row[data-photo="1"] img { aspect-ratio: 3/2; transform: scale(1.1); }
     .hero-photo-row[data-photo="2"] { width: 30.56vw; }
     .hero-photo-row[data-photo="2"] img { aspect-ratio: 462/268; }
     .hero-photo-row[data-photo="3"] { width: 19.18vw; }
@@ -309,7 +307,7 @@
       margin-bottom: 40px;
     }
     .about-body {
-      font-size: 11px;
+      font-size: 12.5px;
       font-weight: 300;
       line-height: 1.9;
       letter-spacing: -0.04em;
@@ -320,7 +318,7 @@
     /* ── CONTACT ── */
     .contact-section {
       padding: 100px 40px;
-      border-top: 1px solid var(--line);
+      margin-top: 60px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -500,7 +498,7 @@
       <div class="hero-photos">
         <div class="photos-track">
           <div class="hero-photo-row" data-photo="1">
-            <img src="images/hero-yeezy.jpg" alt="Yeezy Breezy" />
+            <img src="images/ss.png" alt="Yeezy Breezy" />
           </div>
           <div class="hero-photo-row" data-photo="2">
             <img src="images/hero-parkhunt.jpg" alt="Parkhunt" />
@@ -550,7 +548,7 @@
           <a class="project-header" href="project-mangomarket.html" data-project="3">
             <span class="project-num">003</span>
             <span class="project-title">Yes Is More</span>
-            <span class="project-type">Catalogue</span>
+            <span class="project-type">Catalog</span>
             <span class="project-toggle">Open ↗</span>
           </a>
         </div>
@@ -580,10 +578,10 @@
           </div>
         </div>
         <div class="contact-section">
-          <h3 class="contact-heading">Let's<br />Work<br />Together.</h3>
+          <h3 class="contact-heading" onclick="hideSection('info-wrapper')" style="cursor:pointer;">Let's<br />Work<br />Together.</h3>
           <div class="contact-right">
             <a href="mailto:ziv.f22@gmail.com" class="contact-link">ziv.f22@gmail.com</a>
-            <a href="#" class="contact-link">Instagram ↗</a>
+            <a href="https://www.instagram.com/_zivfishman" target="_blank" class="contact-link">Instagram ↗</a>
             <a href="#" class="contact-link">Download CV ↗</a>
           </div>
         </div>
@@ -594,9 +592,9 @@
 
   <!-- FOOTER -->
   <footer>
-    <span>© 2026 Ziv Fishman</span>
-    <span style="position:absolute;left:50%;transform:translateX(-50%);">Built with Claude Code &amp; Figma</span>
     <span>UX / UI Designer — Israel</span>
+    <span style="position:absolute;left:50%;transform:translateX(-50%);">Built with Claude Code &amp; Figma</span>
+    <span>© 2026 Ziv Fishman</span>
   </footer>
 
   <script>
